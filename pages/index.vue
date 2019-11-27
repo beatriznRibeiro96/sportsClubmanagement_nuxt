@@ -6,19 +6,20 @@
   </b-container>
 </template>
 <script>
-export default {
-  data() {
-    return {
-      fields: ["username", "name", "email"],
-      administrators: []
-    };
-  },
-  created() {
-    this.$axios.$get("http://localhost:8080/SportsClubManagement_war_exploded/api/administrators").then(administrators => {
-      this.administrators = administrators;
-    });
-  }
-};
+    export default {
+        data () {
+            return {
+                fields: ['username', 'name', 'email'],
+                administrators: []
+            }
+        },
+        created () {
+            this.$axios.$get('/api/administrators')
+                .then((administrators) => {
+                    this.administrators = administrators
+                })
+        }
+    }
 </script>
 <style>
 </style>

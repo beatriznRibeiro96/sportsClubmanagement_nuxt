@@ -1,6 +1,6 @@
-# sportsClub-management
+# sportsClubmanagement_nuxt
 
-> SportsClub Management 
+> Sports Club Management PLL
 
 ## Build Setup
 
