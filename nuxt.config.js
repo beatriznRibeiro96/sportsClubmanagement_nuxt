@@ -38,27 +38,25 @@ module.exports = {
   ** Nuxt.js modules
   */
   modules: [
-    // Doc: https://bootstrap-vue.js.org
+    // Doc: https://bootstrap-vue.js.org/docs/
     'bootstrap-vue/nuxt',
-    // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
   ],
-  /*
-  ** Axios module configuration
-  ** See https://axios.nuxtjs.org/options
-  */
   axios: {
-	proxy: true,
-credentials: true
-},
-	proxy: {
-'/api/': {
-target: 'http://localhost:8080/sportsClub/api/',
-pathRewrite: {
-'^/api/': ''
-}
-}
-},
+    proxy: true,
+    credentials: true
+  },
+  proxy: {
+    '/api/': {
+      target: 'http://localhost:8080/SportsClubManagement_war_exploded/api/',
+      pathRewrite: {
+        '^/api/': ''
+      }
+    }
+  },
+  /*
+  ** Build configuration
+  */
   build: {
     /*
     ** You can extend webpack config here
