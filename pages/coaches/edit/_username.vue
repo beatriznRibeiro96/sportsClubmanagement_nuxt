@@ -1,6 +1,6 @@
 <template>
   <b-container>
-    <h3>Edit Administrator {{name}}</h3>
+    <h3>Edit Coach {{name}}</h3>
     <b-form @submit.prevent="edit(username)">
       <b-form-group label="Password" description="Enter a password">
         <b-input
@@ -26,7 +26,7 @@
           v-model.trim="email"
           required />
       </b-form-group>
-      <b-btn variant="secondary" to="/administrators">Return</b-btn>
+      <b-btn variant="secondary" to="/coaches">Return</b-btn>
       <b-btn variant="warning" @click.prevent="reset">RESET</b-btn>
       <b-btn variant="success" @click.prevent="edit(username)">EDIT</b-btn>
     </b-form>
@@ -44,16 +44,16 @@
         },
         mounted() {
             this.username = this.$route.params.username // username of the administrator
-            this.fetchAdministrator(this.username)
+            this.fetchCoach(this.username)
         },
         methods: {
             /**
-             * used to fetch the administrator to updated
+             * used to fetch the coach to updated
              * @return {[type]} [description]
              */
-            fetchAdministrator(username) {
+            fetchCoach(username) {
                 //const token = localStorage.getItem('auth._token.local')
-                const URL = `api/administrators/${username}`
+                const URL = `api/coaches/${username}`
                 this.$axios({
                     method: 'get',
                     url: URL/*,
@@ -77,14 +77,14 @@
                     })
             },
             /**
-             * [updateAdministrator used to Update Administrator]
+             * [updateCoach used to Update Coach]
              */
             edit(username) {
                 // eslint-disable-next-line
                 const { password, name, email } = this
                 const data = { password, name, email }
                 //const token = localStorage.getItem('auth._token.local')
-                const URL = `api/administrators/${username}`
+                const URL = `api/coaches/${username}`
                 this.$axios({
                     method: 'put',
                     url: URL,
@@ -95,7 +95,7 @@
                     data: data
                 })
                     .then(_ => {
-                        this.$router.push('/administrators')
+                        this.$router.push('/coaches')
                     })
                     .catch(err => {
                         // eslint-disable-next-line
@@ -103,7 +103,7 @@
                     })
             },
             reset(){
-                this.fetchAdministrator(this.username);
+                this.fetchCoach(this.username);
             }
         }
     }
