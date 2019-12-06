@@ -53,7 +53,7 @@ credentials: true
 },
 	proxy: {
 '/api/': {
-target: 'http://localhost:8080/sportsClub/api/',
+target: 'http://localhost:8080/SportsClubManagement_war_exploded/api/',
 pathRewrite: {
 '^/api/': ''
 }
