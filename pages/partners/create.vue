@@ -1,6 +1,6 @@
 <template>
   <b-container>
-    <h3>Create new Administrator</h3>
+    <h3>Create new Partner</h3>
     <b-form @submit.prevent="create">
       <b-form-group label="Username" description="Enter an username">
         <b-input
@@ -34,8 +34,8 @@
           v-model.trim="email"
           required />
       </b-form-group>
-      <b-btn variant="secondary" to="/administrators">Return</b-btn>
-      <b-btn variant="warning" type="reset">RESET</b-btn>
+      <b-btn variant="secondary" to="/partners">Return</b-btn>
+      <b-btn variant="warning" @click.prevent="reset">RESET</b-btn>
       <b-btn variant="success" @click.prevent="create">CREATE</b-btn>
     </b-form>
   </b-container>
@@ -52,7 +52,7 @@
         },
         methods: {
             create() {
-                this.$axios.$post('/api/administrators', {
+                this.$axios.$post('/api/partners', {
                     username: this.username,
                     password: this.password,
                     name: this.name,
@@ -60,7 +60,14 @@
                 })
                     .then(() => {this.$router.back()
                     })
+            },
+            reset(){
+                this.username = null
+                this.password = null
+                this.name = null
+                this.email = null
             }
         }
     }
 </script>
+

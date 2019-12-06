@@ -13,11 +13,18 @@
       <b-table striped over :items="administrators" :fields="fields">
          
         <template v-slot:cell(actions)="row">
-          <nuxt-link
-            class="btn btn-link" :to="`/administrators/${row.item.username}`">Details</nuxt-link>
+          <b-btn variant="info"
+                 :to="`/administrators/${row.item.username}`">DETAILS</b-btn>
+          <b-btn variant="warning" :to="`/administrators/edit/${row.item.username}`">
+            EDIT
+          </b-btn>
+          <b-btn variant="danger" @click="deleteAdministrator(row.item.username)">
+            DELETE
+          </b-btn>
         </template>
       </b-table>
-      <nuxt-link to="/">Back</nuxt-link>
+      <b-btn variant="success" to="/administrators/create">Create a New Administrator</b-btn>
+      <b-btn variant="secondary" to="/">Back</b-btn>
     </b-container>
    
   </div>

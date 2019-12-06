@@ -38,14 +38,24 @@ module.exports = {
   ** Nuxt.js modules
   */
   modules: [
-    // Doc: https://bootstrap-vue.js.org
+    // Doc: https://bootstrap-vue.js.org/docs/
     'bootstrap-vue/nuxt',
-    // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
   ],
+  axios: {
+    proxy: true,
+    credentials: true
+  },
+  proxy: {
+    '/api/': {
+      target: 'http://localhost:8080/SportsClubManagement_war_exploded/api/',
+      pathRewrite: {
+        '^/api/': ''
+      }
+    }
+  },
   /*
-  ** Axios module configuration
-  ** See https://axios.nuxtjs.org/options
+  ** Build configuration
   */
   axios: {
 	proxy: true,

@@ -1,8 +1,8 @@
 {
-  "name": "sportsClub-management",
+  "name": "sportsClubmanagement_nuxt",
   "version": "1.0.0",
-  "description": "SportsClub Management ",
-  "author": "Beatriz Ribeiro",
+  "description": "Sports Club Management PLL",
+  "author": "Luís Pimentel",
   "private": true,
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon server/index.js --watch server",

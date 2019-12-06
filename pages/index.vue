@@ -2,7 +2,9 @@
   <b-container>
     <h1>Welcome to SportsClub Management</h1>
     Please visit our
-    
-    <nuxt-link to="/administrators" class="btn btn-link">Administrator</nuxt-link>
+    <b-btn variant="dark" to="/administrators">Administrators</b-btn>
+    <b-btn variant="dark" to="/coaches">Coaches</b-btn>
+    <b-btn variant="dark" to="/partners">Partners</b-btn>
+    <b-btn variant="dark" to="/sports">Sports</b-btn>
   </b-container>
 </template>
