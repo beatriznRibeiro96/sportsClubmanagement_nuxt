@@ -41,10 +41,44 @@ module.exports = {
     // Doc: https://bootstrap-vue.js.org/docs/
     'bootstrap-vue/nuxt',
     '@nuxtjs/axios',
+    '@nuxtjs/toast',
+    '@nuxtjs/auth'
   ],
   axios: {
     proxy: true,
     credentials: true
+  },
+  auth: {
+    redirect: {
+      login: '/auth/login',
+      logout: '/',
+      home: '/'
+    },
+    watchLoggedIn: true,
+    strategies: {
+      local: {
+        endpoints: {
+          login: {
+            url: '/api/login/token',
+            method: 'post',
+            propertyName: 'token'
+          },
+          logout: false,
+          user: {
+            url: '/api/login/claims',
+            method: 'get',
+            propertyName: ''
+          }
+        },
+        // tokenRequired: true, -> default
+        // tokenType: 'bearer' -> default
+      }
+    }
+  },
+  router: {
+    middleware: [
+      'auth'
+    ]
   },
   proxy: {
     '/api/': {
