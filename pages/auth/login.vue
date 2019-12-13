@@ -40,7 +40,7 @@
                     }
                 })
                 promise.then(() => {
-                    this.$toast.success('You are logged in!')
+                    //this.$toast.success('You are logged in!')
                     // check if the user $auth.user object is set
                     // TODO redirect based on the user role
                     // eg:
