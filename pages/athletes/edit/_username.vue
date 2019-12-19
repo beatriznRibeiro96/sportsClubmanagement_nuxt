@@ -1,7 +1,15 @@
 <template>
   <b-container>
-    <h3>Edit Sport {{name}}</h3>
-    <b-form @submit.prevent="edit(code)">
+    <h3>Edit Athlete {{name}}</h3>
+    <b-form @submit.prevent="edit(username)">
+      <b-form-group label="Password" description="Enter a password">
+        <b-input
+          name="password"
+          type="password"
+          placeholder="Password"
+          v-model="password"
+          required />
+      </b-form-group>
       <b-form-group label="Name" description="Enter a name">
         <b-input
           name="name"
@@ -10,9 +18,17 @@
           v-model.trim="name"
           required />
       </b-form-group>
-      <b-btn variant="secondary" to="/sports">Return</b-btn>
+      <b-form-group label="Email" description="Enter an email">
+        <b-input
+          name="email"
+          type="email"
+          placeholder="Email"
+          v-model.trim="email"
+          required />
+      </b-form-group>
+      <b-btn variant="secondary" to="/athletes">Return</b-btn>
       <b-btn variant="warning" @click.prevent="reset">RESET</b-btn>
-      <b-btn variant="success" @click.prevent="edit(code)">EDIT</b-btn>
+      <b-btn variant="success" @click.prevent="edit(username)">EDIT</b-btn>
     </b-form>
   </b-container>
 </template>
@@ -20,22 +36,24 @@
     export default {
         data() {
             return {
-                code: null,
-                name: null
+                username: null,
+                password: null,
+                name: null,
+                email: null
             }
         },
         mounted() {
-            this.code = this.$route.params.code // username of the administrator
-            this.fetchSport(this.code)
+            this.username = this.$route.params.username // username of the athlete
+            this.fetchAthlete(this.username)
         },
         methods: {
             /**
-             * used to fetch the sport to updated
+             * used to fetch the athlete to updated
              * @return {[type]} [description]
              */
-            fetchSport(code) {
+            fetchAthlete(username) {
                 //const token = localStorage.getItem('auth._token.local')
-                const URL = `api/sports/${code}`
+                const URL = `api/athletes/${username}`
                 this.$axios({
                     method: 'get',
                     url: URL/*,
@@ -46,9 +64,12 @@
                 })
                     .then(res => {
                         // eslint-disable-next-line
-                        const { name } = res.data
+                        const { name, email } = res.data
                         // eslint-disable-next-lineº
                         this.name = name
+                        // eslint-disable-next-line
+                        this.email = email
+                        this.password = null
                     })
                     .catch(err => {
                         // eslint-disable-next-line
@@ -56,14 +77,14 @@
                     })
             },
             /**
-             * [updateSport used to Update Sport]
+             * [updateAthlete used to Update Athlete]
              */
-            edit(code) {
+            edit(username) {
                 // eslint-disable-next-line
-                const { name } = this
-                const data = { name }
+                const { password, name, email } = this
+                const data = { password, name, email }
                 //const token = localStorage.getItem('auth._token.local')
-                const URL = `api/sports/${code}`
+                const URL = `api/athletes/${username}`
                 this.$axios({
                     method: 'put',
                     url: URL,
@@ -74,7 +95,7 @@
                     data: data
                 })
                     .then(_ => {
-                        this.$router.push('/sports')
+                        this.$router.push('/athletes')
                     })
                     .catch(err => {
                         // eslint-disable-next-line
@@ -82,7 +103,7 @@
                     })
             },
             reset(){
-                this.fetchSport(this.code);
+                this.fetchAthlete(this.username);
             }
         }
     }
