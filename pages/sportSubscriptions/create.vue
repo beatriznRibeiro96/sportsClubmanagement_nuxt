@@ -20,17 +20,17 @@
             </option>
           </template>
         </b-select>
-        <b-form-group label="Athlete">
-          <b-select v-model="athleteUsername" :options="athletes"
-                    required
-                    value-field="username"
-                    text-field="name">
-            <template v-slot:first>
-              <option :value="null" disabled>-- Please select the Athlete --
-              </option>
-            </template>
-          </b-select>
-        </b-form-group>
+      </b-form-group>
+      <b-form-group label="Athlete">
+        <b-select v-model="athleteUsername" :options="athletes"
+                  required
+                  value-field="username"
+                  text-field="name">
+          <template v-slot:first>
+            <option :value="null" disabled>-- Please select the Athlete --
+            </option>
+          </template>
+        </b-select>
       </b-form-group>
       <b-btn variant="secondary" to="/sportSubscriptions">Return</b-btn>
       <b-btn variant="warning" @click.prevent="reset">RESET</b-btn>

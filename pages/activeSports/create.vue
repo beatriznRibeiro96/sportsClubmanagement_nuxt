@@ -20,17 +20,17 @@
             </option>
           </template>
         </b-select>
-        <b-form-group label="Season">
-          <b-select v-model="seasonCode" :options="seasons"
-                    required
-                    value-field="code"
-                    text-field="name">
-            <template v-slot:first>
-              <option :value="null" disabled>-- Please select the Season --
-              </option>
-            </template>
-          </b-select>
-        </b-form-group>
+      </b-form-group>
+      <b-form-group label="Season">
+        <b-select v-model="seasonCode" :options="seasons"
+                  required
+                  value-field="code"
+                  text-field="name">
+          <template v-slot:first>
+            <option :value="null" disabled>-- Please select the Season --
+            </option>
+          </template>
+        </b-select>
       </b-form-group>
       <b-btn variant="secondary" to="/activeSports">Return</b-btn>
       <b-btn variant="warning" @click.prevent="reset">RESET</b-btn>
