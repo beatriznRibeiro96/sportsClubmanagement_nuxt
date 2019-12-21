@@ -1,12 +1,16 @@
 <template>
   <b-container>
-    <h3>Active Sport Details</h3>
+    <h2>Active Sport Details</h2>
     <p>Code: {{ activeSport.code }}</p>
     <p>Name: {{ activeSport.name }}</p>
-    <h3>Coaches</h3>
+    <h4>Coaches</h4>
     <b-table v-if="coaches.length" striped over :items="coaches"
              :fields="coachFields" />
     <p v-else>No coaches.</p>
+    <h4>Ranks</h4>
+    <b-table v-if="ranks.length" striped over :items="ranks"
+             :fields="rankFields" />
+    <p v-else>No ranks.</p>
     <b-btn variant="secondary" to="/activeSports">Back</b-btn>
   </b-container>
 </template>
@@ -14,9 +18,11 @@
     export default {
         data() {
             return {
-                activeSport: {},coaches: [],
+                activeSport: {},
                 coaches: [],
-                coachFields: ['username', 'name', 'email' ],
+                coachFields: ['username', 'name'],
+                ranks: [],
+                rankFields: ['code', 'name']
             }
         },
         computed: {
@@ -29,6 +35,8 @@
                 .then(activeSport => this.activeSport = activeSport || {})
                 .then(() => this.$axios.$get(`/api/activeSports/${this.code}/coaches`))
                 .then(coaches => this.coaches = coaches)
+                .then(() => this.$axios.$get(`/api/activeSports/${this.code}/ranks`))
+                .then(ranks => this.ranks = ranks)
         },
     }
 </script>

@@ -1,6 +1,6 @@
 <template>
   <b-container>
-    <h3>Edit Athlete {{name}}</h3>
+    <h2>Edit Athlete {{name}}</h2>
     <b-form @submit.prevent="edit(username)">
       <b-form-group label="Password" description="Enter a password">
         <b-input

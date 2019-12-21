@@ -1,6 +1,6 @@
 <template>
   <b-container>
-    <h3>Create new Administrator</h3>
+    <h2>Create new Administrator</h2>
     <b-form @submit.prevent="create">
       <b-form-group label="Username" description="Enter an username">
         <b-input

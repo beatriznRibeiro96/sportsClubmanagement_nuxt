@@ -1,6 +1,6 @@
 <template>
   <b-container>
-    <h3>Edit Sport {{name}}</h3>
+    <h2>Edit Sport {{name}}</h2>
     <b-form @submit.prevent="edit(code)">
       <b-form-group label="Name" description="Enter a name">
         <b-input

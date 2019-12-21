@@ -1,6 +1,6 @@
 <template>
   <b-container>
-    <h3>Partner Details</h3>
+    <h2>Partner Details</h2>
     <p>Username: {{ partner.username }}</p>
     <p>Name: {{ partner.name }}</p>
     <p>Email: {{ partner.email }}</p>

@@ -1,6 +1,6 @@
 <template>
   <b-container>
-    <h3>Create new Partner</h3>
+    <h2>Create new Partner</h2>
     <b-form @submit.prevent="create">
       <b-form-group label="Username" description="Enter an username">
         <b-input

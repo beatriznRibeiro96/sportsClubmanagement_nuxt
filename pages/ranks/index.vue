@@ -1,19 +1,19 @@
 <template>
   <div>
     <b-container>
-      <b-table striped over :items="sportSubscriptions" :fields="fields">
+      <b-table striped over :items="ranks" :fields="fields">
         <template v-slot:cell(actions)="row">
           <b-btn variant="info"
-                 :to="`/sportSubscriptions/${row.item.code}`">DETAILS</b-btn>
-          <b-btn variant="warning" :to="`/sportSubscriptions/edit/${row.item.code}`">
+                 :to="`/ranks/${row.item.code}`">DETAILS</b-btn>
+          <b-btn variant="warning" :to="`/ranks/edit/${row.item.code}`">
             EDIT
           </b-btn>
-          <b-btn variant="danger" @click="deleteSportSubscription(row.item.code)">
+          <b-btn variant="danger" @click="deleteRank(row.item.code)">
             DELETE
           </b-btn>
         </template>
       </b-table>
-      <b-btn variant="success" to="/sportSubscriptions/create">Create a New Sport Subscription</b-btn>
+      <b-btn variant="success" to="/ranks/create">Create a New Rank</b-btn>
       <b-btn variant="secondary" to="/">Back</b-btn>
     </b-container>
   </div>
@@ -22,20 +22,20 @@
     export default {
         data () {
             return {
-                fields: ['code', 'name', 'activeSportName', 'athleteName', 'actions'],
-                sportSubscriptions: []
+                fields: ['code', 'name', 'activeSportName', 'actions'],
+                ranks: []
             }
         },
         created () {
-            this.$axios.$get('/api/sportSubscriptions')
-                .then((sportSubscriptions) => {
-                    this.sportSubscriptions = sportSubscriptions
+            this.$axios.$get('/api/ranks')
+                .then((ranks) => {
+                    this.ranks = ranks
                 })
         },
         methods: {
-            fetchSportSubscriptions() {
+            fetchRanks() {
                 //const token = localStorage.getItem('auth._token.local')
-                const URL = 'api/sportSubscriptions'
+                const URL = 'api/ranks'
                 this.$axios({
                     method: 'get',
                     url: URL/*,
@@ -45,16 +45,16 @@
                     }*/
                 })
                     .then(res => {
-                        this.sportSubscriptions = res.data
+                        this.ranks = res.data
                     })
                     .catch(err => {
                         // eslint-disable-next-line
                         console.log(err)
                     })
             },
-            deleteSportSubscription(code) {
+            deleteRanks(code) {
                 //const token = localStorage.getItem('auth._token.local')
-                const URL = `api/sportSubscriptions/${code}`
+                const URL = `api/ranks/${code}`
                 this.$axios({
                     method: 'delete',
                     url: URL/*,
@@ -64,7 +64,7 @@
                     }*/
                 })
                     .then(_ => {
-                        this.fetchSportSubscriptions()
+                        this.fetchRanks()
                     })
                     .catch(err => {
                         // eslint-disable-next-line

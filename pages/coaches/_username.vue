@@ -1,10 +1,10 @@
 <template>
   <b-container>
-    <h3>Coach Details</h3>
+    <h2>Coach Details</h2>
     <p>Username: {{ coach.username }}</p>
     <p>Name: {{ coach.name }}</p>
     <p>Email: {{ coach.email }}</p>
-    <h3>Active Sports</h3>
+    <h4>Active Sports</h4>
     <b-table v-if="activeSports.length" striped over :items="activeSports"
              :fields="activeSportFields" />
     <p v-else>No active sports.</p>

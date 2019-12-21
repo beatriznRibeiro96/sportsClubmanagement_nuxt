@@ -1,13 +1,18 @@
 <template>
   <b-container>
-    <h3>Sport Subscription Details</h3>
+    <h2>Sport Subscription Details</h2>
     <p>Code: {{ sportSubscription.code }}</p>
     <p>Name: {{ sportSubscription.name }}</p>
-    <h3>Athlete</h3>
+    <h4>Active Sport</h4>
+    <div v-if="activeSport">
+      <p>Code: {{activeSport.code}}</p>
+      <p>Name: {{activeSport.name}}</p>
+    </div>
+    <p v-else>No athlete.</p>
+    <h4>Athlete</h4>
     <div v-if="athlete">
       <p>Username: {{athlete.username}}</p>
       <p>Name: {{athlete.name}}</p>
-      <p>Email: {{athlete.email}}</p>
     </div>
     <p v-else>No athlete.</p>
     <b-btn variant="secondary" to="/sportSubscriptions">Back</b-btn>
@@ -19,6 +24,7 @@
             return {
                 sportSubscription: {},
                 athlete: {},
+                activeSport: {}
             }
         },
         computed: {
@@ -31,6 +37,8 @@
                 .then(sportSubscription => this.sportSubscription = sportSubscription || {})
                 .then(() => this.$axios.$get(`/api/athletes/${this.sportSubscription.athleteUsername}`))
                 .then(athlete => this.athlete = athlete)
+                .then(() => this.$axios.$get(`/api/activeSports/${this.sportSubscription.activeSportCode}`))
+                .then(activeSport => this.activeSport = activeSport)
         },
     }
 </script>

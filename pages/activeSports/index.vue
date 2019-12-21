@@ -22,7 +22,7 @@
     export default {
         data () {
             return {
-                fields: ['code', 'name', 'actions'],
+                fields: ['code', 'name', 'sportName', 'seasonName', 'actions'],
                 activeSports: []
             }
         },
