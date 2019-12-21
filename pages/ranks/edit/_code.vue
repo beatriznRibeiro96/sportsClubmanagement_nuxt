@@ -27,7 +27,7 @@
           required />
       </b-form-group>
       <b-form-group label="Active Sport">
-        <b-select v-model="activeSportCode" :options="actoveSports"
+        <b-select v-model="activeSportCode" :options="activeSports"
                   required
                   value-field="code"
                   text-field="name">

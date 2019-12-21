@@ -52,7 +52,7 @@
                         console.log(err)
                     })
             },
-            deleteRanks(code) {
+            deleteRank(code) {
                 //const token = localStorage.getItem('auth._token.local')
                 const URL = `api/ranks/${code}`
                 this.$axios({

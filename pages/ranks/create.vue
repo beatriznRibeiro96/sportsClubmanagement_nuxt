@@ -72,7 +72,7 @@
                 this.name = null
                 this.idadeMin = null
                 this.idadeMax = null
-                this.activeSports = null
+                this.activeSportCode = null
             }
         }
     }
