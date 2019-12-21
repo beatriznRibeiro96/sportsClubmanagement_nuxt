@@ -10,5 +10,6 @@
     <b-btn variant="dark" to="/activeSports">Active Sports</b-btn>
     <b-btn variant="dark" to="/sportSubscriptions">Sport Subscriptions</b-btn>
     <b-btn variant="dark" to="/ranks">Ranks</b-btn>
+    <b-btn variant="dark" to="/seasons">Seasons</b-btn>
   </b-container>
 </template>
