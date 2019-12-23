@@ -4,6 +4,7 @@
     <p>Username: {{ coach.username }}</p>
     <p>Name: {{ coach.name }}</p>
     <p>Email: {{ coach.email }}</p>
+    <p>Birth Date: {{ coach.birthDate }}</p>
     <h4>Active Sports</h4>
     <b-table v-if="activeSports.length" striped over :items="activeSports"
              :fields="activeSportFields" />

@@ -34,6 +34,14 @@
           v-model.trim="email"
           required />
       </b-form-group>
+      <b-form-group label="Birth Date" description="Enter a birth date">
+        <b-input
+          name="birthDate"
+          type="date"
+          placeholder="Birth Date"
+          v-model.trim="birthDate"
+          required />
+      </b-form-group>
       <b-btn variant="secondary" to="/administrators">Return</b-btn>
       <b-btn variant="warning" @click.prevent="reset">RESET</b-btn>
       <b-btn variant="success" @click.prevent="create">CREATE</b-btn>
@@ -47,7 +55,8 @@
                 username: '',
                 password: '',
                 name: '',
-                email: ''
+                email: '',
+                birthDate: ''
             }
         },
         methods: {
@@ -56,7 +65,8 @@
                     username: this.username,
                     password: this.password,
                     name: this.name,
-                    email: this.email
+                    email: this.email,
+                    birthDate: this.birthDate
                 })
                     .then(() => {this.$router.back()
                     })
@@ -66,6 +76,7 @@
                 this.password = ''
                 this.name = ''
                 this.email = ''
+                this.birthDate = ''
             }
         }
     }

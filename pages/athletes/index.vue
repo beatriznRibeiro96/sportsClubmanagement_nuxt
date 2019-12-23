@@ -37,6 +37,7 @@
               <b-form-checkbox value="username">Username</b-form-checkbox>
               <b-form-checkbox value="name">Name</b-form-checkbox>
               <b-form-checkbox value="email">Email</b-form-checkbox>
+              <b-form-checkbox value="birthDate">Birth Date</b-form-checkbox>
             </b-form-checkbox-group>
           </b-form-group>
         </b-col>
@@ -66,6 +67,7 @@
                     {key: "username", label: "Username", sortable: true},
                     {key: "name", label: "Name", sortable: true},
                     {key: "email", label: "Email", sortable: true},
+                    {key: "birthDate", label: "Birth Date", sortable: true},
                     {key: "actions", label: "Actions"}
                 ],
                 athletes: [],

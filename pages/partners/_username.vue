@@ -4,6 +4,7 @@
     <p>Username: {{ partner.username }}</p>
     <p>Name: {{ partner.name }}</p>
     <p>Email: {{ partner.email }}</p>
+    <p>Birth Date: {{ partner.birthDate }}</p>
     <b-btn variant="secondary" to="/partners">Back</b-btn>
   </b-container>
 </template>

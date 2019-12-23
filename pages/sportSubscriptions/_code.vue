@@ -8,7 +8,7 @@
       <p>Code: {{activeSport.code}}</p>
       <p>Name: {{activeSport.name}}</p>
     </div>
-    <p v-else>No athlete.</p>
+    <p v-else>No active sport.</p>
     <h4>Athlete</h4>
     <div v-if="athlete">
       <p>Username: {{athlete.username}}</p>

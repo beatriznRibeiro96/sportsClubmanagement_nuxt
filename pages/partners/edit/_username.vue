@@ -26,6 +26,14 @@
           v-model.trim="email"
           required />
       </b-form-group>
+      <b-form-group label="Birth Date" description="Enter a birth date">
+        <b-input
+          name="birthDate"
+          type="date"
+          placeholder="Birth Date"
+          v-model="birthDate"
+          required />
+      </b-form-group>
       <b-btn variant="secondary" to="/partners">Return</b-btn>
       <b-btn variant="warning" @click.prevent="reset">RESET</b-btn>
       <b-btn variant="success" @click.prevent="edit(username)">EDIT</b-btn>
@@ -39,7 +47,8 @@
                 username: null,
                 password: null,
                 name: null,
-                email: null
+                email: null,
+                birthDate: ''
             }
         },
         mounted() {
@@ -64,12 +73,13 @@
                 })
                     .then(res => {
                         // eslint-disable-next-line
-                        const { name, email } = res.data
+                        const { name, email, birthDate } = res.data
                         // eslint-disable-next-lineº
                         this.name = name
                         // eslint-disable-next-line
                         this.email = email
                         this.password = null
+                        this.birthDate = birthDate
                     })
                     .catch(err => {
                         // eslint-disable-next-line
@@ -81,8 +91,8 @@
              */
             edit(username) {
                 // eslint-disable-next-line
-                const { password, name, email } = this
-                const data = { password, name, email }
+                const { password, name, email, birthDate } = this
+                const data = { password, name, email, birthDate }
                 //const token = localStorage.getItem('auth._token.local')
                 const URL = `api/partners/${username}`
                 this.$axios({
