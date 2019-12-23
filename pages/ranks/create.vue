@@ -14,6 +14,7 @@
         <b-input
           name="idadeMin"
           type="number"
+          min="1"
           placeholder="Minimum Age"
           v-model.trim="idadeMin"
           required />
@@ -22,6 +23,7 @@
         <b-input
           name="idadeMax"
           type="number"
+          min="1"
           placeholder="Maximum Age"
           v-model.trim="idadeMax"
           required />
@@ -32,7 +34,7 @@
                   value-field="code"
                   text-field="name">
           <template v-slot:first>
-            <option :value="null" disabled>-- Please select the Active Sport --
+            <option :value="0" disabled>-- Please select the Active Sport --
             </option>
           </template>
         </b-select>
@@ -48,9 +50,9 @@
         data() {
             return {
                 name: null,
-                idadeMin: null,
-                idadeMax: null,
-                activeSportCode: null,
+                idadeMin: 0,
+                idadeMax: 0,
+                activeSportCode: 0,
                 activeSports: []
             }
         },
@@ -70,9 +72,9 @@
             },
             reset(){
                 this.name = null
-                this.idadeMin = null
-                this.idadeMax = null
-                this.activeSportCode = null
+                this.idadeMin = 0
+                this.idadeMax = 0
+                this.activeSportCode = 0
             }
         }
     }

@@ -14,6 +14,7 @@
         <b-input
           name="idadeMin"
           type="number"
+          min="0"
           placeholder="Minimum Age"
           v-model.trim="idadeMin"
           required />
@@ -22,6 +23,7 @@
         <b-input
           name="idadeMax"
           type="number"
+          min="0"
           placeholder="Maximum Age"
           v-model.trim="idadeMax"
           required />

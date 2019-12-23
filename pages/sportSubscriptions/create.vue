@@ -16,7 +16,7 @@
                   value-field="code"
                   text-field="name">
           <template v-slot:first>
-            <option :value="null" disabled>-- Please select the Active Sport --
+            <option :value="0" disabled>-- Please select the Active Sport --
             </option>
           </template>
         </b-select>
@@ -27,7 +27,7 @@
                   value-field="username"
                   text-field="name">
           <template v-slot:first>
-            <option :value="null" disabled>-- Please select the Athlete --
+            <option :value="''" disabled>-- Please select the Athlete --
             </option>
           </template>
         </b-select>
@@ -43,9 +43,9 @@
         data() {
             return {
                 name: null,
-                activeSportCode: null,
+                activeSportCode: 0,
                 activeSports: [],
-                athleteUsername: null,
+                athleteUsername: '',
                 athletes: []
             }
         },
@@ -65,8 +65,8 @@
             },
             reset(){
                 this.name = null
-                this.activeSportCode = null
-                this.athleteUsername = null
+                this.activeSportCode = 0
+                this.athleteUsername = ''
             }
         }
     }

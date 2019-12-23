@@ -44,10 +44,10 @@
     export default {
         data() {
             return {
-                username: null,
-                password: null,
-                name: null,
-                email: null
+                username: '',
+                password: '',
+                name: '',
+                email: ''
             }
         },
         methods: {
@@ -62,10 +62,10 @@
                     })
             },
             reset(){
-                this.username = null
-                this.password = null
-                this.name = null
-                this.email = null
+                this.username = ''
+                this.password = ''
+                this.name = ''
+                this.email = ''
             }
         }
     }

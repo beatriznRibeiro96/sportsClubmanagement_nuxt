@@ -35,7 +35,7 @@
           required />
       </b-form-group>
       <b-btn variant="secondary" to="/administrators">Return</b-btn>
-      <b-btn variant="warning" type="reset">RESET</b-btn>
+      <b-btn variant="warning" @click.prevent="reset">RESET</b-btn>
       <b-btn variant="success" @click.prevent="create">CREATE</b-btn>
     </b-form>
   </b-container>
@@ -44,10 +44,10 @@
     export default {
         data() {
             return {
-                username: null,
-                password: null,
-                name: null,
-                email: null
+                username: '',
+                password: '',
+                name: '',
+                email: ''
             }
         },
         methods: {
@@ -60,6 +60,12 @@
                 })
                     .then(() => {this.$router.back()
                     })
+            },
+            reset(){
+                this.username = ''
+                this.password = ''
+                this.name = ''
+                this.email = ''
             }
         }
     }
