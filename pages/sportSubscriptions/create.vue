@@ -10,13 +10,13 @@
           v-model.trim="name"
           required />
       </b-form-group>
-      <b-form-group label="Active Sport">
-        <b-select v-model="activeSportCode" :options="activeSports"
+      <b-form-group label="Rank">
+        <b-select v-model="rankCode" :options="ranks"
                   required
                   value-field="code"
                   text-field="name">
           <template v-slot:first>
-            <option :value="0" disabled>-- Please select the Active Sport --
+            <option :value="0" disabled>-- Please select the Rank --
             </option>
           </template>
         </b-select>
@@ -43,21 +43,21 @@
         data() {
             return {
                 name: null,
-                activeSportCode: 0,
-                activeSports: [],
+                rankCode: 0,
+                ranks: [],
                 athleteUsername: '',
                 athletes: []
             }
         },
         created() {
-            this.$axios.$get('/api/activeSports').then(activeSports => { this.activeSports = activeSports })
+            this.$axios.$get('/api/ranks').then(ranks => { this.ranks = ranks })
             this.$axios.$get('/api/athletes').then(athletes => { this.athletes = athletes })
         },
         methods: {
             create() {
                 this.$axios.$post('/api/sportSubscriptions', {
                     name: this.name,
-                    activeSportCode: this.activeSportCode,
+                    rankCode: this.rankCode,
                     athleteUsername: this.athleteUsername
                 })
                     .then(() => {this.$router.back()
@@ -65,7 +65,7 @@
             },
             reset(){
                 this.name = null
-                this.activeSportCode = 0
+                this.rankCode = 0
                 this.athleteUsername = ''
             }
         }

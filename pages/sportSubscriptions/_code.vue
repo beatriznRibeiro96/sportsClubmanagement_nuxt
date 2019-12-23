@@ -3,12 +3,12 @@
     <h2>Sport Subscription Details</h2>
     <p>Code: {{ sportSubscription.code }}</p>
     <p>Name: {{ sportSubscription.name }}</p>
-    <h4>Active Sport</h4>
-    <div v-if="activeSport">
-      <p>Code: {{activeSport.code}}</p>
-      <p>Name: {{activeSport.name}}</p>
+    <h4>Rank</h4>
+    <div v-if="rank">
+      <p>Code: {{rank.code}}</p>
+      <p>Name: {{rank.name}}</p>
     </div>
-    <p v-else>No active sport.</p>
+    <p v-else>No rank.</p>
     <h4>Athlete</h4>
     <div v-if="athlete">
       <p>Username: {{athlete.username}}</p>
@@ -24,7 +24,7 @@
             return {
                 sportSubscription: {},
                 athlete: {},
-                activeSport: {}
+                rank: {}
             }
         },
         computed: {
@@ -37,8 +37,8 @@
                 .then(sportSubscription => this.sportSubscription = sportSubscription || {})
                 .then(() => this.$axios.$get(`/api/athletes/${this.sportSubscription.athleteUsername}`))
                 .then(athlete => this.athlete = athlete)
-                .then(() => this.$axios.$get(`/api/activeSports/${this.sportSubscription.activeSportCode}`))
-                .then(activeSport => this.activeSport = activeSport)
+                .then(() => this.$axios.$get(`/api/ranks/${this.sportSubscription.rankCode}`))
+                .then(rank => this.rank = rank)
         },
     }
 </script>

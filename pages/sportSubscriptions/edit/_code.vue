@@ -10,13 +10,13 @@
           v-model.trim="name"
           required />
       </b-form-group>
-      <b-form-group label="Active Sport">
-        <b-select v-model="activeSportCode" :options="activeSports"
+      <b-form-group label="Rank">
+        <b-select v-model="rankCode" :options="ranks"
                   required
                   value-field="code"
                   text-field="name">
           <template v-slot:first>
-            <option :value="null" disabled>-- Please select the Active Sport --
+            <option :value="null" disabled>-- Please select the Rank --
             </option>
           </template>
         </b-select>
@@ -44,15 +44,15 @@
             return {
                 code: null,
                 name: null,
-                activeSportCode: null,
-                activeSports: [],
+                rankCode: null,
+                ranks: [],
                 athleteUsername: null,
                 athletes: []
             }
         },
         mounted() {
             this.code = this.$route.params.code // code of the sport subscription
-            this.$axios.$get('/api/activeSports').then(activeSports => { this.activeSports = activeSports})
+            this.$axios.$get('/api/ranks').then(ranks => { this.ranks = ranks})
             this.$axios.$get('/api/athletes').then(athletes => { this.athletes = athletes})
             this.fetchSportSubscription(this.code)
         },
@@ -74,10 +74,10 @@
                 })
                     .then(res => {
                         // eslint-disable-next-line
-                        const { name, activeSportCode, athleteUsername } = res.data
+                        const { name, rankCode, athleteUsername } = res.data
                         // eslint-disable-next-lineº
                         this.name = name
-                        this.activeSportCode = activeSportCode
+                        this.rankCode = rankCode
                         this.athleteUsername = athleteUsername
                     })
                     .catch(err => {
@@ -90,8 +90,8 @@
              */
             edit(code) {
                 // eslint-disable-next-line
-                const { name, activeSportCode, athleteUsername } = this
-                const data = { name, activeSportCode, athleteUsername }
+                const { name, rankCode, athleteUsername } = this
+                const data = { name, rankCode, athleteUsername }
                 //const token = localStorage.getItem('auth._token.local')
                 const URL = `api/sportSubscriptions/${code}`
                 this.$axios({

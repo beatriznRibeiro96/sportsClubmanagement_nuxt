@@ -36,7 +36,7 @@
             <b-form-checkbox-group v-model="filterOn" class="mt-1">
               <b-form-checkbox value="code">Code</b-form-checkbox>
               <b-form-checkbox value="name">Name</b-form-checkbox>
-              <b-form-checkbox value="activeSportName">Active Sport Name</b-form-checkbox>
+              <b-form-checkbox value="rankName">Rank Name</b-form-checkbox>
               <b-form-checkbox value="athleteName">Athlete Name</b-form-checkbox>
             </b-form-checkbox-group>
           </b-form-group>
@@ -66,7 +66,7 @@
                 fields: [
                     {key: "code", label: "Code", sortable: true},
                     {key: "name", label: "Name", sortable: true},
-                    {key: "activeSportName", label: "Active Sport Name", sortable: true},
+                    {key: "rankName", label: "Rank Name", sortable: true},
                     {key: "athleteName", label: "Athlete Name", sortable: true},
                     {key: "actions", label: "Actions"}
                 ],
