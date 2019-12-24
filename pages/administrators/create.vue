@@ -42,6 +42,7 @@
           v-model.trim="birthDate"
           required />
       </b-form-group>
+      <p class="text-danger" v-show="errorMsg">{{ errorMsg }}</p>
       <b-btn variant="secondary" to="/administrators">Return</b-btn>
       <b-btn variant="warning" @click.prevent="reset">RESET</b-btn>
       <b-btn variant="success" @click.prevent="create">CREATE</b-btn>
@@ -56,7 +57,8 @@
                 password: '',
                 name: '',
                 email: '',
-                birthDate: ''
+                birthDate: '',
+                errorMsg: false
             }
         },
         methods: {
@@ -70,6 +72,9 @@
                 })
                     .then(() => {this.$router.back()
                     })
+                    .catch(error => {
+                        this.errorMsg = error.response.data
+                    })
             },
             reset(){
                 this.username = ''
@@ -77,6 +82,7 @@
                 this.name = ''
                 this.email = ''
                 this.birthDate = ''
+                this.errorMsg = false
             }
         }
     }

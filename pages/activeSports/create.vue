@@ -32,6 +32,7 @@
           </template>
         </b-select>
       </b-form-group>
+      <p class="text-danger" v-show="errorMsg">{{ errorMsg }}</p>
       <b-btn variant="secondary" to="/activeSports">Return</b-btn>
       <b-btn variant="warning" @click.prevent="reset">RESET</b-btn>
       <b-btn variant="success" @click.prevent="create">CREATE</b-btn>
@@ -46,7 +47,8 @@
                 sportCode: 0,
                 sports: [],
                 seasonCode: 0,
-                seasons: []
+                seasons: [],
+                errorMsg: false
             }
         },
         created() {
@@ -62,11 +64,15 @@
                 })
                     .then(() => {this.$router.back()
                     })
+                    .catch(error => {
+                        this.errorMsg = error.response.data
+                    })
             },
             reset(){
                 this.name = null
                 this.sportCode = 0
                 this.seasonCode = 0
+                this.errorMsg = false
             }
         }
     }

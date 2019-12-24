@@ -39,6 +39,7 @@
           </template>
         </b-select>
       </b-form-group>
+      <p class="text-danger" v-show="errorMsg">{{ errorMsg }}</p>
       <b-btn variant="secondary" to="/ranks">Return</b-btn>
       <b-btn variant="warning" @click.prevent="reset">RESET</b-btn>
       <b-btn variant="success" @click.prevent="create">CREATE</b-btn>
@@ -53,7 +54,8 @@
                 idadeMin: 0,
                 idadeMax: 0,
                 activeSportCode: 0,
-                activeSports: []
+                activeSports: [],
+                errorMsg: false
             }
         },
         created() {
@@ -69,12 +71,16 @@
                 })
                     .then(() => {this.$router.back()
                     })
+                    .catch(error => {
+                        this.errorMsg = error.response.data
+                    })
             },
             reset(){
                 this.name = null
                 this.idadeMin = 0
                 this.idadeMax = 0
                 this.activeSportCode = 0
+                this.errorMsg = false
             }
         }
     }
