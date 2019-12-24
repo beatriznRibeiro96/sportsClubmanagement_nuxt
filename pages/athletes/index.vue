@@ -42,19 +42,19 @@
           </b-form-group>
         </b-col>
       </b-row>
-      <b-table bordered hover head-variant="dark" :items="coaches" :fields="fields" :filter="filter" :filterIncludedFields="filterOn" sort-icon-left>
+      <b-table bordered hover head-variant="dark" :items="athletes" :fields="fields" :filter="filter" :filterIncludedFields="filterOn" sort-icon-left>
         <template v-slot:cell(actions)="row">
           <b-btn variant="info"
-                 :to="`/coaches/${row.item.username}`">DETAILS</b-btn>
-          <b-btn variant="warning" :to="`/coaches/edit/${row.item.username}`">
+                 :to="`/athletes/${row.item.username}`">DETAILS</b-btn>
+          <b-btn variant="warning" :to="`/athletes/edit/${row.item.username}`">
             EDIT
           </b-btn>
-          <b-btn variant="danger" @click="deleteCoach(row.item.username)">
+          <b-btn variant="danger" @click="deleteAthlete(row.item.username)">
             DELETE
           </b-btn>
         </template>
       </b-table>
-      <b-btn variant="success" to="/coaches/create">Create a New Coach</b-btn>
+      <b-btn variant="success" to="/athletes/create">Create a New Athlete</b-btn>
       <b-btn variant="secondary" to="/">Back</b-btn>
     </b-container>
   </div>
@@ -70,21 +70,21 @@
                     {key: "birthDate", label: "Birth Date", sortable: true},
                     {key: "actions", label: "Actions"}
                 ],
-                coaches: [],
+                athletes: [],
                 filter: null,
                 filterOn: []
             }
         },
         created () {
-            this.$axios.$get('/api/coaches')
-                .then((coaches) => {
-                    this.coaches = coaches
+            this.$axios.$get('/api/athletes')
+                .then((athletes) => {
+                    this.athletes = athletes
                 })
         },
         methods: {
-            fetchCoaches() {
+            fetchAthletes() {
                 //const token = localStorage.getItem('auth._token.local')
-                const URL = 'api/coaches'
+                const URL = 'api/athletes'
                 this.$axios({
                     method: 'get',
                     url: URL/*,
@@ -94,16 +94,16 @@
                     }*/
                 })
                     .then(res => {
-                        this.coaches = res.data
+                        this.athletes = res.data
                     })
                     .catch(err => {
                         // eslint-disable-next-line
                         console.log(err)
                     })
             },
-            deleteCoach(username) {
+            deleteAthlete(username) {
                 //const token = localStorage.getItem('auth._token.local')
-                const URL = `api/coaches/${username}`
+                const URL = `api/athletes/${username}`
                 this.$axios({
                     method: 'delete',
                     url: URL/*,
@@ -113,7 +113,7 @@
                     }*/
                 })
                     .then(_ => {
-                        this.fetchCoaches()
+                        this.fetchAthletes()
                     })
                     .catch(err => {
                         // eslint-disable-next-line

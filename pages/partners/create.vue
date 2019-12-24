@@ -1,6 +1,6 @@
 <template>
   <b-container>
-    <h3>Create new Partner</h3>
+    <h2>Create new Partner</h2>
     <b-form @submit.prevent="create">
       <b-form-group label="Username" description="Enter an username">
         <b-input
@@ -34,6 +34,15 @@
           v-model.trim="email"
           required />
       </b-form-group>
+      <b-form-group label="Birth Date" description="Enter a birth date">
+        <b-input
+          name="birthDate"
+          type="date"
+          placeholder="Birth Date"
+          v-model.trim="birthDate"
+          required />
+      </b-form-group>
+      <p class="text-danger" v-show="errorMsg">{{ errorMsg }}</p>
       <b-btn variant="secondary" to="/partners">Return</b-btn>
       <b-btn variant="warning" @click.prevent="reset">RESET</b-btn>
       <b-btn variant="success" @click.prevent="create">CREATE</b-btn>
@@ -44,10 +53,12 @@
     export default {
         data() {
             return {
-                username: null,
-                password: null,
-                name: null,
-                email: null
+                username: '',
+                password: '',
+                name: '',
+                email: '',
+                birthDate: '',
+                errorMsg: false
             }
         },
         methods: {
@@ -56,16 +67,22 @@
                     username: this.username,
                     password: this.password,
                     name: this.name,
-                    email: this.email
+                    email: this.email,
+                    birthDate: this.birthDate
                 })
                     .then(() => {this.$router.back()
                     })
+                    .catch(error => {
+                        this.errorMsg = error.response.data
+                    })
             },
             reset(){
-                this.username = null
-                this.password = null
-                this.name = null
-                this.email = null
+                this.username = ''
+                this.password = ''
+                this.name = ''
+                this.email = ''
+                this.birthDate = ''
+                this.errorMsg = false
             }
         }
     }

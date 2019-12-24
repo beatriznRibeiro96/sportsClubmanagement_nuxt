@@ -34,27 +34,26 @@
             description="Leave all unchecked to filter on all data"
             class="mb-0">
             <b-form-checkbox-group v-model="filterOn" class="mt-1">
-              <b-form-checkbox value="username">Username</b-form-checkbox>
+              <b-form-checkbox value="code">Code</b-form-checkbox>
               <b-form-checkbox value="name">Name</b-form-checkbox>
-              <b-form-checkbox value="email">Email</b-form-checkbox>
-              <b-form-checkbox value="birthDate">Birth Date</b-form-checkbox>
+              <b-form-checkbox value="activeSportName">Active Sport Name</b-form-checkbox>
             </b-form-checkbox-group>
           </b-form-group>
         </b-col>
       </b-row>
-      <b-table bordered hover head-variant="dark" :items="coaches" :fields="fields" :filter="filter" :filterIncludedFields="filterOn" sort-icon-left>
+      <b-table bordered hover head-variant="dark" :items="ranks" :fields="fields" :filter="filter" :filterIncludedFields="filterOn" sort-icon-left>
         <template v-slot:cell(actions)="row">
           <b-btn variant="info"
-                 :to="`/coaches/${row.item.username}`">DETAILS</b-btn>
-          <b-btn variant="warning" :to="`/coaches/edit/${row.item.username}`">
+                 :to="`/ranks/${row.item.code}`">DETAILS</b-btn>
+          <b-btn variant="warning" :to="`/ranks/edit/${row.item.code}`">
             EDIT
           </b-btn>
-          <b-btn variant="danger" @click="deleteCoach(row.item.username)">
+          <b-btn variant="danger" @click="deleteRank(row.item.code)">
             DELETE
           </b-btn>
         </template>
       </b-table>
-      <b-btn variant="success" to="/coaches/create">Create a New Coach</b-btn>
+      <b-btn variant="success" to="/ranks/create">Create a New Rank</b-btn>
       <b-btn variant="secondary" to="/">Back</b-btn>
     </b-container>
   </div>
@@ -64,27 +63,26 @@
         data () {
             return {
                 fields: [
-                    {key: "username", label: "Username", sortable: true},
+                    {key: "code", label: "Code", sortable: true},
                     {key: "name", label: "Name", sortable: true},
-                    {key: "email", label: "Email", sortable: true},
-                    {key: "birthDate", label: "Birth Date", sortable: true},
+                    {key: "activeSportName", label: "Active Sport Name", sortable: true},
                     {key: "actions", label: "Actions"}
                 ],
-                coaches: [],
+                ranks: [],
                 filter: null,
                 filterOn: []
             }
         },
         created () {
-            this.$axios.$get('/api/coaches')
-                .then((coaches) => {
-                    this.coaches = coaches
+            this.$axios.$get('/api/ranks')
+                .then((ranks) => {
+                    this.ranks = ranks
                 })
         },
         methods: {
-            fetchCoaches() {
+            fetchRanks() {
                 //const token = localStorage.getItem('auth._token.local')
-                const URL = 'api/coaches'
+                const URL = 'api/ranks'
                 this.$axios({
                     method: 'get',
                     url: URL/*,
@@ -94,16 +92,16 @@
                     }*/
                 })
                     .then(res => {
-                        this.coaches = res.data
+                        this.ranks = res.data
                     })
                     .catch(err => {
                         // eslint-disable-next-line
                         console.log(err)
                     })
             },
-            deleteCoach(username) {
+            deleteRank(code) {
                 //const token = localStorage.getItem('auth._token.local')
-                const URL = `api/coaches/${username}`
+                const URL = `api/ranks/${code}`
                 this.$axios({
                     method: 'delete',
                     url: URL/*,
@@ -113,7 +111,7 @@
                     }*/
                 })
                     .then(_ => {
-                        this.fetchCoaches()
+                        this.fetchRanks()
                     })
                     .catch(err => {
                         // eslint-disable-next-line

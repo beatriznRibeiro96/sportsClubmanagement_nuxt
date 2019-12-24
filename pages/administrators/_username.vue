@@ -1,9 +1,10 @@
 <template>
   <b-container>
-    <h3>Administrator Details</h3>
+    <h2>Administrator Details</h2>
     <p>Username: {{ administrator.username }}</p>
     <p>Name: {{ administrator.name }}</p>
     <p>Email: {{ administrator.email }}</p>
+    <p>Birth Date: {{ administrator.birthDate }}</p>
     <b-btn variant="secondary" to="/administrators">Back</b-btn>
   </b-container>
 </template>

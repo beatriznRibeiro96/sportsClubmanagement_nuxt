@@ -1,15 +1,7 @@
 <template>
   <b-container>
-    <h2>Edit Partner {{name}}</h2>
-    <b-form @submit.prevent="edit(username)">
-      <b-form-group label="Password" description="Enter a password">
-        <b-input
-          name="password"
-          type="password"
-          placeholder="Password"
-          v-model="password"
-          required />
-      </b-form-group>
+    <h2>Edit Rank {{name}}</h2>
+    <b-form @submit.prevent="edit(code)">
       <b-form-group label="Name" description="Enter a name">
         <b-input
           name="name"
@@ -18,25 +10,39 @@
           v-model.trim="name"
           required />
       </b-form-group>
-      <b-form-group label="Email" description="Enter an email">
+      <b-form-group label="Minimum Age" description="Enter a minimum age">
         <b-input
-          name="email"
-          type="email"
-          placeholder="Email"
-          v-model.trim="email"
+          name="idadeMin"
+          type="number"
+          min="0"
+          placeholder="Minimum Age"
+          v-model.trim="idadeMin"
           required />
       </b-form-group>
-      <b-form-group label="Birth Date" description="Enter a birth date">
+      <b-form-group label="Maximum Age" description="Enter a maximum age">
         <b-input
-          name="birthDate"
-          type="date"
-          placeholder="Birth Date"
-          v-model="birthDate"
+          name="idadeMax"
+          type="number"
+          min="0"
+          placeholder="Maximum Age"
+          v-model.trim="idadeMax"
           required />
       </b-form-group>
-      <b-btn variant="secondary" to="/partners">Return</b-btn>
+      <b-form-group label="Active Sport">
+        <b-select v-model="activeSportCode" :options="activeSports"
+                  required
+                  value-field="code"
+                  text-field="name">
+          <template v-slot:first>
+            <option :value="null" disabled>-- Please select the Active Sport --
+            </option>
+          </template>
+        </b-select>
+
+      </b-form-group>
+      <b-btn variant="secondary" to="/ranks">Return</b-btn>
       <b-btn variant="warning" @click.prevent="reset">RESET</b-btn>
-      <b-btn variant="success" @click.prevent="edit(username)">EDIT</b-btn>
+      <b-btn variant="success" @click.prevent="edit(code)">EDIT</b-btn>
     </b-form>
   </b-container>
 </template>
@@ -44,25 +50,27 @@
     export default {
         data() {
             return {
-                username: null,
-                password: null,
+                code: null,
                 name: null,
-                email: null,
-                birthDate: ''
+                idadeMin: null,
+                idadeMax: null,
+                activeSportCode: null,
+                activeSports: []
             }
         },
         mounted() {
-            this.username = this.$route.params.username // username of the partner
-            this.fetchPartner(this.username)
+            this.code = this.$route.params.code // code of the rank
+            this.$axios.$get('/api/activeSports').then(activeSports => { this.activeSports = activeSports})
+            this.fetchRank(this.code)
         },
         methods: {
             /**
-             * used to fetch the partner to updated
+             * used to fetch the rank to updated
              * @return {[type]} [description]
              */
-            fetchPartner(username) {
+            fetchRank(code) {
                 //const token = localStorage.getItem('auth._token.local')
-                const URL = `api/partners/${username}`
+                const URL = `api/ranks/${code}`
                 this.$axios({
                     method: 'get',
                     url: URL/*,
@@ -73,13 +81,12 @@
                 })
                     .then(res => {
                         // eslint-disable-next-line
-                        const { name, email, birthDate } = res.data
+                        const { name, idadeMin, idadeMax, activeSportCode } = res.data
                         // eslint-disable-next-lineº
                         this.name = name
-                        // eslint-disable-next-line
-                        this.email = email
-                        this.password = null
-                        this.birthDate = birthDate
+                        this.idadeMin = idadeMin
+                        this.idadeMax = idadeMax
+                        this.activeSportCode = activeSportCode
                     })
                     .catch(err => {
                         // eslint-disable-next-line
@@ -87,14 +94,14 @@
                     })
             },
             /**
-             * [updatePartner used to Update Partner]
+             * [updateActiveSport used to Update Rank]
              */
-            edit(username) {
+            edit(code) {
                 // eslint-disable-next-line
-                const { password, name, email, birthDate } = this
-                const data = { password, name, email, birthDate }
+                const { name, idadeMin, idadeMax, activeSportCode } = this
+                const data = { name, idadeMin, idadeMax, activeSportCode }
                 //const token = localStorage.getItem('auth._token.local')
-                const URL = `api/partners/${username}`
+                const URL = `api/ranks/${code}`
                 this.$axios({
                     method: 'put',
                     url: URL,
@@ -105,7 +112,7 @@
                     data: data
                 })
                     .then(_ => {
-                        this.$router.push('/partners')
+                        this.$router.push('/ranks')
                     })
                     .catch(err => {
                         // eslint-disable-next-line
@@ -113,7 +120,7 @@
                     })
             },
             reset(){
-                this.fetchPartner(this.username);
+                this.fetchRank(this.code);
             }
         }
     }

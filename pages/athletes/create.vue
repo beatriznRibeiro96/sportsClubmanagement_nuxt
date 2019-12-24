@@ -1,6 +1,6 @@
 <template>
   <b-container>
-    <h2>Create new Coach</h2>
+    <h2>Create new Athlete</h2>
     <b-form @submit.prevent="create">
       <b-form-group label="Username" description="Enter an username">
         <b-input
@@ -43,7 +43,7 @@
           required />
       </b-form-group>
       <p class="text-danger" v-show="errorMsg">{{ errorMsg }}</p>
-      <b-btn variant="secondary" to="/coaches">Return</b-btn>
+      <b-btn variant="secondary" to="/athletes">Return</b-btn>
       <b-btn variant="warning" @click.prevent="reset">RESET</b-btn>
       <b-btn variant="success" @click.prevent="create">CREATE</b-btn>
     </b-form>
@@ -63,7 +63,7 @@
         },
         methods: {
             create() {
-                this.$axios.$post('/api/coaches', {
+                this.$axios.$post('/api/athletes', {
                     username: this.username,
                     password: this.password,
                     name: this.name,

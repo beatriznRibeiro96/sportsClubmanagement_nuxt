@@ -82,27 +82,12 @@ module.exports = {
   },
   proxy: {
     '/api/': {
-      target: 'http://localhost:8080/SportsClubManagement_war_exploded/api/',
+      target: 'http://localhost:8080/sportsClubManagement/api/',
       pathRewrite: {
         '^/api/': ''
       }
     }
   },
-  /*
-  ** Build configuration
-  */
-  axios: {
-	proxy: true,
-credentials: true
-},
-	proxy: {
-'/api/': {
-target: 'http://localhost:8080/SportsClubManagement_war_exploded/api/',
-pathRewrite: {
-'^/api/': ''
-}
-}
-},
   build: {
     /*
     ** You can extend webpack config here

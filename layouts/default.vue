@@ -15,6 +15,7 @@
         methods: {
             logout() {
                 this.$auth.logout('local')
+                this.$router.push('/auth/login')
             }
         }
     }

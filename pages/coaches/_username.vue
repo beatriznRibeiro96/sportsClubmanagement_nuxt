@@ -1,13 +1,14 @@
 <template>
   <b-container>
-    <h3>Coach Details</h3>
+    <h2>Coach Details</h2>
     <p>Username: {{ coach.username }}</p>
     <p>Name: {{ coach.name }}</p>
     <p>Email: {{ coach.email }}</p>
-    <h3>Sports</h3>
-    <b-table v-if="sports.length" striped over :items="sports"
-             :fields="sportFields" />
-    <p v-else>No sports.</p>
+    <p>Birth Date: {{ coach.birthDate }}</p>
+    <h4>Active Sports</h4>
+    <b-table v-if="activeSports.length" striped over :items="activeSports"
+             :fields="activeSportFields" />
+    <p v-else>No active sports.</p>
     <b-btn variant="secondary" to="/coaches">Back</b-btn>
   </b-container>
 </template>
@@ -16,15 +17,15 @@
         data() {
             return {
                 coach: {},
-                sportFields: ['code', 'name' ]
+                activeSportFields: ['code', 'name' ]
             }
         },
         computed: {
             username() {
                 return this.$route.params.username
             },
-            sports() {
-                return this.coach.sports || []
+            activeSports() {
+                return this.coach.activeSports || []
             }
         },
         created() {

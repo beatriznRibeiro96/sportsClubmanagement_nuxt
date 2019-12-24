@@ -1,15 +1,7 @@
 <template>
   <b-container>
-    <h2>Edit Partner {{name}}</h2>
-    <b-form @submit.prevent="edit(username)">
-      <b-form-group label="Password" description="Enter a password">
-        <b-input
-          name="password"
-          type="password"
-          placeholder="Password"
-          v-model="password"
-          required />
-      </b-form-group>
+    <h2>Edit Season {{name}}</h2>
+    <b-form @submit.prevent="edit(code)">
       <b-form-group label="Name" description="Enter a name">
         <b-input
           name="name"
@@ -18,25 +10,9 @@
           v-model.trim="name"
           required />
       </b-form-group>
-      <b-form-group label="Email" description="Enter an email">
-        <b-input
-          name="email"
-          type="email"
-          placeholder="Email"
-          v-model.trim="email"
-          required />
-      </b-form-group>
-      <b-form-group label="Birth Date" description="Enter a birth date">
-        <b-input
-          name="birthDate"
-          type="date"
-          placeholder="Birth Date"
-          v-model="birthDate"
-          required />
-      </b-form-group>
-      <b-btn variant="secondary" to="/partners">Return</b-btn>
+      <b-btn variant="secondary" to="/seasons">Return</b-btn>
       <b-btn variant="warning" @click.prevent="reset">RESET</b-btn>
-      <b-btn variant="success" @click.prevent="edit(username)">EDIT</b-btn>
+      <b-btn variant="success" @click.prevent="edit(code)">EDIT</b-btn>
     </b-form>
   </b-container>
 </template>
@@ -44,25 +20,22 @@
     export default {
         data() {
             return {
-                username: null,
-                password: null,
-                name: null,
-                email: null,
-                birthDate: ''
+                code: null,
+                name: null
             }
         },
         mounted() {
-            this.username = this.$route.params.username // username of the partner
-            this.fetchPartner(this.username)
+            this.code = this.$route.params.code // username of the administrator
+            this.fetchSeason(this.code)
         },
         methods: {
             /**
-             * used to fetch the partner to updated
+             * used to fetch the season to updated
              * @return {[type]} [description]
              */
-            fetchPartner(username) {
+            fetchSeason(code) {
                 //const token = localStorage.getItem('auth._token.local')
-                const URL = `api/partners/${username}`
+                const URL = `api/seasons/${code}`
                 this.$axios({
                     method: 'get',
                     url: URL/*,
@@ -73,13 +46,9 @@
                 })
                     .then(res => {
                         // eslint-disable-next-line
-                        const { name, email, birthDate } = res.data
+                        const { name } = res.data
                         // eslint-disable-next-lineº
                         this.name = name
-                        // eslint-disable-next-line
-                        this.email = email
-                        this.password = null
-                        this.birthDate = birthDate
                     })
                     .catch(err => {
                         // eslint-disable-next-line
@@ -87,14 +56,14 @@
                     })
             },
             /**
-             * [updatePartner used to Update Partner]
+             * [updateSport used to Update Season]
              */
-            edit(username) {
+            edit(code) {
                 // eslint-disable-next-line
-                const { password, name, email, birthDate } = this
-                const data = { password, name, email, birthDate }
+                const { name } = this
+                const data = { name }
                 //const token = localStorage.getItem('auth._token.local')
-                const URL = `api/partners/${username}`
+                const URL = `api/seasons/${code}`
                 this.$axios({
                     method: 'put',
                     url: URL,
@@ -105,7 +74,7 @@
                     data: data
                 })
                     .then(_ => {
-                        this.$router.push('/partners')
+                        this.$router.push('/seasons')
                     })
                     .catch(err => {
                         // eslint-disable-next-line
@@ -113,7 +82,7 @@
                     })
             },
             reset(){
-                this.fetchPartner(this.username);
+                this.fetchSeason(this.code);
             }
         }
     }

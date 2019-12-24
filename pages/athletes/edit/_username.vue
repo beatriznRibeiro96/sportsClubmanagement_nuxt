@@ -1,6 +1,6 @@
 <template>
   <b-container>
-    <h2>Edit Partner {{name}}</h2>
+    <h2>Edit Athlete {{name}}</h2>
     <b-form @submit.prevent="edit(username)">
       <b-form-group label="Password" description="Enter a password">
         <b-input
@@ -34,7 +34,7 @@
           v-model="birthDate"
           required />
       </b-form-group>
-      <b-btn variant="secondary" to="/partners">Return</b-btn>
+      <b-btn variant="secondary" to="/athletes">Return</b-btn>
       <b-btn variant="warning" @click.prevent="reset">RESET</b-btn>
       <b-btn variant="success" @click.prevent="edit(username)">EDIT</b-btn>
     </b-form>
@@ -52,17 +52,17 @@
             }
         },
         mounted() {
-            this.username = this.$route.params.username // username of the partner
-            this.fetchPartner(this.username)
+            this.username = this.$route.params.username // username of the athlete
+            this.fetchAthlete(this.username)
         },
         methods: {
             /**
-             * used to fetch the partner to updated
+             * used to fetch the athlete to updated
              * @return {[type]} [description]
              */
-            fetchPartner(username) {
+            fetchAthlete(username) {
                 //const token = localStorage.getItem('auth._token.local')
-                const URL = `api/partners/${username}`
+                const URL = `api/athletes/${username}`
                 this.$axios({
                     method: 'get',
                     url: URL/*,
@@ -87,14 +87,14 @@
                     })
             },
             /**
-             * [updatePartner used to Update Partner]
+             * [updateAthlete used to Update Athlete]
              */
             edit(username) {
                 // eslint-disable-next-line
                 const { password, name, email, birthDate } = this
                 const data = { password, name, email, birthDate }
                 //const token = localStorage.getItem('auth._token.local')
-                const URL = `api/partners/${username}`
+                const URL = `api/athletes/${username}`
                 this.$axios({
                     method: 'put',
                     url: URL,
@@ -105,7 +105,7 @@
                     data: data
                 })
                     .then(_ => {
-                        this.$router.push('/partners')
+                        this.$router.push('/athletes')
                     })
                     .catch(err => {
                         // eslint-disable-next-line
@@ -113,7 +113,7 @@
                     })
             },
             reset(){
-                this.fetchPartner(this.username);
+                this.fetchAthlete(this.username);
             }
         }
     }
