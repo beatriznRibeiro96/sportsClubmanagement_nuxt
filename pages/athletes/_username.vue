@@ -8,7 +8,11 @@
     <h4>Sport Subscriptions</h4>
     <b-table v-if="sportSubscriptions.length" striped over :items="sportSubscriptions"
              :fields="sportSubscriptionFields" />
-    <p v-else>No active sports.</p>
+    <p v-else>No sport subscriptions.</p>
+    <h4>Grades</h4>
+    <b-table v-if="grades.length" striped over :items="grades"
+             :fields="gradeFields" />
+    <p v-else>No grades.</p>
     <b-btn variant="secondary" to="/athletes">Back</b-btn>
   </b-container>
 </template>
@@ -17,7 +21,8 @@
         data() {
             return {
                 athlete: {},
-                sportSubscriptionFields: ['code', 'name' ]
+                sportSubscriptionFields: ['code', 'name' ],
+                gradeFields: ['code', 'name']
             }
         },
         computed: {
@@ -26,6 +31,9 @@
             },
             sportSubscriptions() {
                 return this.athlete.sportSubscriptions || []
+            },
+            grades() {
+                return this.athlete.grades || []
             }
         },
         created() {

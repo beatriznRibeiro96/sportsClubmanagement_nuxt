@@ -11,5 +11,6 @@
     <b-btn variant="dark" to="/sportSubscriptions">Sport Subscriptions</b-btn>
     <b-btn variant="dark" to="/ranks">Ranks</b-btn>
     <b-btn variant="dark" to="/seasons">Seasons</b-btn>
+    <b-btn variant="dark" to="/grades">Grades</b-btn>
   </b-container>
 </template>
