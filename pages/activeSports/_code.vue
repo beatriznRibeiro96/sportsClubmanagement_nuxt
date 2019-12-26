@@ -15,6 +15,10 @@
     <b-table v-if="grades.length" striped over :items="grades"
              :fields="gradeFields" />
     <p v-else>No grades.</p>
+    <h4>Schedules</h4>
+    <b-table v-if="schedules.length" striped over :items="schedules"
+             :fields="scheduleFields" />
+    <p v-else>No schedules.</p>
     <b-btn variant="secondary" to="/activeSports">Back</b-btn>
   </b-container>
 </template>
@@ -28,7 +32,9 @@
                 ranks: [],
                 rankFields: ['code', 'name'],
                 grades: [],
-                gradeFields: ['code', 'name']
+                gradeFields: ['code', 'name'],
+                schedules: [],
+                scheduleFields: ['code', 'name']
             }
         },
         computed: {
@@ -45,6 +51,8 @@
                 .then(ranks => this.ranks = ranks)
                 .then(() => this.$axios.$get(`/api/activeSports/${this.code}/grades`))
                 .then(grades => this.grades = grades)
+                .then(() => this.$axios.$get(`/api/activeSports/${this.code}/schedules`))
+                .then(schedules => this.schedules = schedules)
         },
     }
 </script>

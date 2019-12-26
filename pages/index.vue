@@ -12,5 +12,6 @@
     <b-btn variant="dark" to="/ranks">Ranks</b-btn>
     <b-btn variant="dark" to="/seasons">Seasons</b-btn>
     <b-btn variant="dark" to="/grades">Grades</b-btn>
+    <b-btn variant="dark" to="/schedules">Schedules</b-btn>
   </b-container>
 </template>
