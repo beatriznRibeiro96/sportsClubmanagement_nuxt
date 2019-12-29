@@ -42,7 +42,9 @@
           </b-form-group>
         </b-col>
       </b-row>
-      <b-table bordered hover head-variant="dark" :items="athletes" :fields="fields" :filter="filter" :filterIncludedFields="filterOn" sort-icon-left>
+      <b-button size="sm" @click="selectAllRows">Select all</b-button>
+      <b-button size="sm" @click="clearSelected">Clear selected</b-button>
+      <b-table ref="selectableTable" bordered hover head-variant="dark" :items="athletes" :fields="fields" :filter="filter" :filterIncludedFields="filterOn" sort-icon-left selectable select-mode="multi" @row-selected="onRowSelected">
         <template v-slot:cell(actions)="row">
           <b-btn variant="info"
                  :to="`/athletes/${row.item.username}`">DETAILS</b-btn>
@@ -56,6 +58,30 @@
       </b-table>
       <b-btn variant="success" to="/athletes/create">Create a New Athlete</b-btn>
       <b-btn variant="secondary" to="/">Back</b-btn>
+    </b-container>
+<br>
+    <b-container v-if="selectedAthletes.length>0">
+      <h2>Send an E-mail</h2>
+      <b-form @submit.prevent="send">
+        <b-form-group label="Subject" description="Enter the subject">
+          <b-input
+            name="subject"
+            type="text"
+            placeholder="Subject"
+            v-model="subject"
+            required />
+        </b-form-group>
+        <b-form-group label="Message" description="Enter the message">
+          <b-form-textarea
+            name="message"
+            type="textarea"
+            placeholder="Message"
+            v-model="message"
+            required>
+          </b-form-textarea>
+        </b-form-group>
+        <b-btn variant="primary" @click.prevent="send">SEND</b-btn>
+      </b-form>
     </b-container>
   </div>
 </template>
@@ -72,7 +98,10 @@
                 ],
                 athletes: [],
                 filter: null,
-                filterOn: []
+                filterOn: [],
+                selectedAthletes: [],
+                subject: null,
+                message: null,
             }
         },
         created () {
@@ -82,6 +111,31 @@
                 })
         },
         methods: {
+            send() {
+                this.$axios.$post(`/api/athletes/email/send`, {
+                    recepientes: this.selectedAthletes,
+                    subject: this.subject,
+                    message: this.message
+                })
+                    .then(msg => {
+                        this.$toast.success(msg)
+                    })
+                    .catch(error => {
+                        this.$toast.error('error sending the e-mail')
+                    })
+            },
+            onRowSelected(items) {
+                this.selectedAthletes = items
+                console.log(this.selectedAthletes)
+            },
+            selectAllRows() {
+                this.$refs.selectableTable.selectAllRows()
+                console.log(this.selectedAthletes)
+            },
+            clearSelected() {
+                this.$refs.selectableTable.clearSelected()
+                console.log(this.selectedAthletes)
+            },
             fetchAthletes() {
                 //const token = localStorage.getItem('auth._token.local')
                 const URL = 'api/athletes'

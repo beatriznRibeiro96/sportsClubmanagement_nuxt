@@ -14,7 +14,6 @@
              :fields="gradeFields" />
     <p v-else>No grades.</p>
     <b-btn variant="secondary" to="/athletes">Back</b-btn>
-    <b-btn variant="info" :to="`/athletes/${this.username}/send-email`">Send e-mail</b-btn>
   </b-container>
 </template>
 <script>
