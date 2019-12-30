@@ -63,22 +63,23 @@ export default {
                     key: 'id',
                     label: 'Code',
                     numeric: true,
-                    searchable: true
+                    sortable: true
                 },
                 {
                     key: 'description',
                     label: 'Name',
-                    searchable: true
+                    sortable: true
                 },
                 {
                     key: 'price',
                     label: 'Price',
-                    numeric: true
+                    numeric: true,
+                    sortable: true
                 },
                 {
                     key: 'categoryDescription',
                     label: 'Category',
-                    searchable: true
+                    sortable: true
                 },
                 {
                     key: 'actions',
