@@ -5,7 +5,8 @@
     <p>Name: {{ partner.name }}</p>
     <p>Email: {{ partner.email }}</p>
     <p>Birth Date: {{ partner.birthDate }}</p>
-    <b-btn variant="secondary" to="/partners">Back</b-btn>
+    <b-btn v-if="this.$auth.user.groups.includes('Partner')" variant="secondary" to="/">Back</b-btn>
+    <b-btn v-else variant="secondary" to="/partners">Back</b-btn>
   </b-container>
 </template>
 <script>

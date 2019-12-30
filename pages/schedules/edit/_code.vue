@@ -1,6 +1,6 @@
 <template>
   <b-container>
-    <h2>Edit Active Sport {{name}}</h2>
+    <h2>Edit Schedule {{name}}</h2>
     <b-form @submit.prevent="edit(code)">
       <b-form-group label="Name" description="Enter a name">
         <b-input
@@ -37,13 +37,13 @@
           v-model.trim="endTime"
           required />
       </b-form-group>
-      <b-form-group label="Active Sport">
-        <b-select v-model="activeSportCode" :options="activeSports"
+      <b-form-group label="Rank">
+        <b-select v-model="rankCode" :options="ranks"
                   required
                   value-field="code"
                   text-field="name">
           <template v-slot:first>
-            <option :value="0" disabled>-- Please select the Active Sport --
+            <option :value="0" disabled>-- Please select the Rank --
             </option>
           </template>
         </b-select>
@@ -70,15 +70,15 @@
                     {code: '5', name: 'Saturday'},
                     {code: '6', name: 'Sunday'}
                 ],
-                activeSportCode: 0,
-                activeSports: [],
+                rankCode: 0,
+                ranks: [],
                 startTime: '',
                 endTime: ''
             }
         },
         mounted() {
             this.code = this.$route.params.code // code of the active sport
-            this.$axios.$get('/api/activeSports').then(activeSports => { this.activeSports = activeSports})
+            this.$axios.$get('/api/ranks').then(ranks => { this.ranks = ranks})
             this.fetchSchedule(this.code)
         },
         methods: {
@@ -99,11 +99,11 @@
                 })
                     .then(res => {
                         // eslint-disable-next-line
-                        const { name, dayOfWeekCode, activeSportCode, startTime, endTime } = res.data
+                        const { name, dayOfWeekCode, rankCode, startTime, endTime } = res.data
                         // eslint-disable-next-lineº
                         this.name = name
                         this.dayOfWeekCode = dayOfWeekCode
-                        this.activeSportCode = activeSportCode
+                        this.rankCode = rankCode
                         this.startTime = startTime
                         this.endTime = endTime
                     })
@@ -117,8 +117,8 @@
              */
             edit(code) {
                 // eslint-disable-next-line
-                const { name, dayOfWeekCode, activeSportCode, startTime, endTime } = this
-                const data = { name, dayOfWeekCode, activeSportCode, startTime, endTime }
+                const { name, dayOfWeekCode, rankCode, startTime, endTime } = this
+                const data = { name, dayOfWeekCode, rankCode, startTime, endTime }
                 //const token = localStorage.getItem('auth._token.local')
                 const URL = `api/schedules/${code}`
                 this.$axios({

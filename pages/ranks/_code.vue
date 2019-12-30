@@ -11,6 +11,14 @@
       <p>Name: {{activeSport.name}}</p>
     </div>
     <p v-else>No active sport.</p>
+    <h4>Coaches</h4>
+    <b-table v-if="coaches.length" striped over :items="coaches"
+             :fields="coachFields" />
+    <p v-else>No coaches.</p>
+    <h4>Athletes</h4>
+    <b-table v-if="athletes.length" striped over :items="athletes"
+             :fields="athleteFields" />
+    <p v-else>No athletes.</p>
     <b-btn variant="secondary" to="/ranks">Back</b-btn>
   </b-container>
 </template>
@@ -19,7 +27,11 @@
         data() {
             return {
                 rank: {},
-                activeSport: {}
+                activeSport: {},
+                coaches: [],
+                coachFields: ['username', 'name'],
+                athletes: [],
+                athleteFields: ['username', 'name']
             }
         },
         computed: {
@@ -32,6 +44,10 @@
                 .then(rank => this.rank = rank || {})
                 .then(() => this.$axios.$get(`/api/activeSports/${this.rank.activeSportCode}`))
                 .then(activeSport => this.activeSport = activeSport)
+                .then(() => this.$axios.$get(`/api/ranks/${this.code}/coaches`))
+                .then(coaches => this.coaches = coaches)
+                .then(() => this.$axios.$get(`/api/ranks/${this.code}/athletes`))
+                .then(athletes => this.athletes = athletes)
         },
     }
 </script>
