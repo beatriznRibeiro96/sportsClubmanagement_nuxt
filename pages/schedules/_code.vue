@@ -6,10 +6,10 @@
     <p>Day of Week: {{ schedule.dayOfWeekName }}</p>
     <p>Start time: {{ schedule.startTime }}</p>
     <p>End time: {{ schedule.endTime }}</p>
-    <h4>Active Sport</h4>
-    <div v-if="activeSport">
-      <p>Code: {{activeSport.code}}</p>
-      <p>Name: {{activeSport.name}}</p>
+    <h4>Rank</h4>
+    <div v-if="rank">
+      <p>Code: {{rank.code}}</p>
+      <p>Name: {{rank.name}}</p>
     </div>
     <p v-else>No active sport.</p>
     <b-btn variant="secondary" to="/schedules">Back</b-btn>
@@ -20,7 +20,7 @@
         data() {
             return {
                 schedule: {},
-                activeSport: {}
+                rank: {}
             }
         },
         computed: {
@@ -31,8 +31,8 @@
         created() {
             this.$axios.$get(`/api/schedules/${this.code}`)
                 .then(schedule => this.schedule = schedule || {})
-                .then(() => this.$axios.$get(`/api/activeSports/${this.schedule.activeSportCode}`))
-                .then(activeSport => this.activeSport = activeSport)
+                .then(() => this.$axios.$get(`/api/ranks/${this.schedule.rankCode}`))
+                .then(rank => this.rank = rank)
         },
     }
 </script>
