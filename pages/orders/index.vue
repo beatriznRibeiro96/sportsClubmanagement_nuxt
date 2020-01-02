@@ -49,6 +49,7 @@
                 <b-button size="sm" @click="row.toggleDetails" class="mr-2">
                     {{ row.detailsShowing ? 'Hide' : 'Show'}} Details
                 </b-button>
+                <b-btn variant="info" size="sm" @click.prevent="exportFaturaPDF(row.item)">export to PDF</b-btn>
             </template>
             <template v-slot:row-details="row">
                 <b-card>
@@ -68,6 +69,7 @@
                         <b-col>
                             <li v-for="item in row.item.payments">
                                 <strong>Amount: </strong>{{ item.amount }}
+                                <b-btn variant="info" size="sm" @click.prevent="exportPagamentPDF(item)">export to PDF</b-btn>
                             </li>
                         </b-col>
                     </b-row>
@@ -76,14 +78,26 @@
             </b-table>
             <b-btn variant="success" to="/products/create">Create a New Order</b-btn>
             <b-btn variant="secondary" to="/">Back</b-btn>
+            <b-table id="my-table" :items="order.lineItemOrders" :fields="fieldsOrder" hidden>
+                <template v-slot:custom-foot="data">
+                    <b-tr>
+                        <b-th colspan="2" style="text-align: right;">Total:</b-th>
+                        <b-th>{{ total }}</b-th>
+                    </b-tr>
+                </template>
+            </b-table>
         </b-container>
     </div>
 </template>
 <script>
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
 export default {
     data () {
         return {
             orders: [],
+            order: {},
+            total: 0,
             filter: null,
             filterOn: [],
             fields: [
@@ -112,6 +126,26 @@ export default {
                     key: 'actions',
                     label: 'Actions'
                 }
+            ],
+            fieldsOrder: [
+                {
+                    key: 'productDescription',
+                    label: 'Description',
+                    numeric: true,
+                    searchable: true
+                },
+                {
+                    key: 'quantity',
+                    label: 'Quantity',
+                    numeric: true,
+                    searchable: true
+                },
+                {
+                    key: 'priceQuantity',
+                    label: 'Price',
+                    numeric: true,
+                    searchable: true
+                }
             ]
         }
     },
@@ -126,6 +160,32 @@ export default {
                 .catch((error) => {
                     console.log(error);
                 })
+        },
+        setTotal() {
+            this.total = 0.0;
+            this.order.lineItemOrders.forEach(element => {
+                this.total += element.priceQuantity
+            });
+            this.total.toFixed(2);
+        },
+        exportFaturaPDF(order) {
+            this.order = order;
+            this.setTotal();
+            setTimeout(() => {  
+                var doc = new jsPDF();
+                doc.text(`FATURA #${order.id}`, 25, 25);
+                doc.autoTable({html: '#my-table', margin: {top: 30}});
+                doc.save(`fatura_${order.id}.pdf`);
+            }, 1000);
+        },
+        exportPagamentPDF(payment) {
+            var doc = new jsPDF();
+            console.log(payment)
+            doc.text(`PAGAMENTO #${payment.id}   -   REFERENTE DA FATURA #${payment.orderID}`, 25, 25);
+
+            doc.text(`Valor: ${payment.amount} €`, 25, 45);
+
+            doc.save(`pagamento_${payment.id}.pdf`);
         }
     },
     mounted() {
