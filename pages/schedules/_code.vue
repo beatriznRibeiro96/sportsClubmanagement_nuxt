@@ -11,7 +11,7 @@
       <p>Code: {{rank.code}}</p>
       <p>Name: {{rank.name}}</p>
     </div>
-    <p v-else>No active sport.</p>
+    <p v-else>No rank.</p>
     <b-btn variant="secondary" to="/schedules">Back</b-btn>
   </b-container>
 </template>
