@@ -25,6 +25,10 @@
     <b-table responsive v-if="schedules.length" striped over :items="schedules"
              :fields="scheduleFields" />
     <p v-else>No ranks.</p>
+    <h4>Messages</h4>
+    <b-table responsive v-if="messages.length" striped over :items="messages"
+             :fields="messageFields" />
+    <p v-else>No messages.</p>
     <b-btn v-if="this.$auth.user.groups.includes('Athlete')" variant="secondary" to="/">Back</b-btn>
     <b-btn v-else variant="secondary" to="/athletes">Back</b-btn>
   </b-container>
@@ -42,7 +46,9 @@
                 coaches: [],
                 coachFields: ['username', 'name'],
                 schedules: [],
-                scheduleFields: ['code', 'name']
+                scheduleFields: ['code', 'name'],
+                messages: [],
+                messageFields: ['subject', 'body']
             }
         },
         computed: {
@@ -64,6 +70,8 @@
                 .then(coaches => this.coaches = coaches)
                 .then(() => this.$axios.$get(`/api/athletes/${this.username}/schedules`))
                 .then(schedules => this.schedules = schedules)
+                .then(() => this.$axios.$get(`/api/athletes/${this.username}/messages`))
+                .then(messages => this.messages = messages)
         },
     }
 </script>
