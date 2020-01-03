@@ -12,11 +12,11 @@
     </div>
     <p v-else>No active sport.</p>
     <h4>Coaches</h4>
-    <b-table v-if="coaches.length" striped over :items="coaches"
+    <b-table responsive v-if="coaches.length" striped over :items="coaches"
              :fields="coachFields" />
     <p v-else>No coaches.</p>
     <h4>Athletes</h4>
-    <b-table v-if="athletes.length" striped over :items="athletes"
+    <b-table responsive v-if="athletes.length" striped over :items="athletes"
              :fields="athleteFields" />
     <p v-else>No athletes.</p>
     <b-btn variant="secondary" to="/ranks">Back</b-btn>

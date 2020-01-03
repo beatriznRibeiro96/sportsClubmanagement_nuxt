@@ -39,10 +39,10 @@
                 </b-col>
             </b-row>
             <b-btn variant="success" @click.prevent="newOrder">Create Order</b-btn>
-            <b-table bordered hover head-variant="dark" 
-                    :items="products" 
-                    :fields="fields" :filter="filter" :filterIncludedFields="filterOn" 
-                    :select-mode="multi" @row-selected="onRowSelected" selectable sort-icon-left>
+            <b-table bordered hover head-variant="dark"
+                    :items="products"
+                    :fields="fields" :filter="filter" :filterIncludedFields="filterOn"
+                    select-mode="multi" @row-selected="onRowSelected" selectable sort-icon-left>
                 <template v-slot:cell(selected)="{ rowSelected }">
                     <template v-if="rowSelected">
                         <span aria-hidden="true">&check;</span>
@@ -62,8 +62,6 @@
                         required />
                 </template>
             </b-table>
-            Selected Rows:<br>
-            {{ selected }}
             <b-alert variant="danger" v-if="error != null">{{ error }}</b-alert>
         </b-container>
     </div>
@@ -104,7 +102,7 @@ export default {
             ],
             itemList: {productID: 0, quantity: 0},
             selected: [],
-            error: null            
+            error: null
         }
     },
     methods: {
@@ -127,7 +125,7 @@ export default {
         },
         onRowSelected(items) {
             items.forEach(item => {
-                this.products.forEach(product => {                    
+                this.products.forEach(product => {
                     if(product.productID == item.productID && product.quantity == 0) {
                         product.quantity = 1;
                     }

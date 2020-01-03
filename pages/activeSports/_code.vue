@@ -4,23 +4,23 @@
     <p>Code: {{ activeSport.code }}</p>
     <p>Name: {{ activeSport.name }}</p>
     <h4>Coaches</h4>
-    <b-table v-if="coaches.length" striped over :items="coaches"
+    <b-table responsive v-if="coaches.length" striped over :items="coaches"
              :fields="coachFields" />
     <p v-else>No coaches.</p>
     <h4>Ranks</h4>
-    <b-table v-if="ranks.length" striped over :items="ranks"
+    <b-table responsive v-if="ranks.length" striped over :items="ranks"
              :fields="rankFields" />
     <p v-else>No ranks.</p>
     <h4>Grades</h4>
-    <b-table v-if="grades.length" striped over :items="grades"
+    <b-table responsive v-if="grades.length" striped over :items="grades"
              :fields="gradeFields" />
     <p v-else>No grades.</p>
     <h4>Schedules</h4>
-    <b-table v-if="schedules.length" striped over :items="schedules"
+    <b-table responsive v-if="schedules.length" striped over :items="schedules"
              :fields="scheduleFields" />
     <p v-else>No schedules.</p>
     <h4>Athletes</h4>
-    <b-table v-if="athletes.length" striped over :items="athletes"
+    <b-table responsive v-if="athletes.length" striped over :items="athletes"
              :fields="athleteFields" />
     <p v-else>No athletes.</p>
     <b-btn variant="secondary" to="/activeSports">Back</b-btn>

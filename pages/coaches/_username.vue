@@ -7,21 +7,21 @@
       <p>Email: {{ coach.email }}</p>
       <p>Birth Date: {{ coach.birthDate }}</p>
       <h4>Active Sports</h4>
-      <b-table v-if="activeSports.length" striped over :items="activeSports"
+      <b-table responsive v-if="activeSports.length" striped over :items="activeSports"
                :fields="activeSportFields" />
       <p v-else>No active sports.</p>
       <h4>Ranks</h4>
-      <b-table v-if="ranks.length" striped over :items="ranks"
+      <b-table responsive v-if="ranks.length" striped over :items="ranks"
                :fields="rankFields" />
       <p v-else>No ranks.</p>
       <h4>Schedules</h4>
-      <b-table v-if="schedules.length" striped over :items="schedules"
+      <b-table responsive v-if="schedules.length" striped over :items="schedules"
                :fields="scheduleFields" />
       <p v-else>No ranks.</p>
       <h4>Athletes</h4>
       <b-button v-if="athletes.length>0" size="sm" @click="selectAllRows">Select all</b-button>
       <b-button v-if="athletes.length>0" size="sm" @click="clearSelected">Clear selected</b-button>
-      <b-table ref="selectableTable" v-if="athletes.length" striped over :items="athletes" selectable select-mode="multi" @row-selected="onRowSelected"
+      <b-table responsive ref="selectableTable" v-if="athletes.length" striped over :items="athletes" selectable select-mode="multi" @row-selected="onRowSelected"
                :fields="athleteFields" />
       <p v-else>No athletes.</p>
       <b-btn v-if="this.$auth.user.groups.includes('Coach')" variant="secondary" to="/">Back</b-btn>

@@ -44,7 +44,7 @@
       </b-row>
       <b-button size="sm" @click="selectAllRows">Select all</b-button>
       <b-button size="sm" @click="clearSelected">Clear selected</b-button>
-      <b-table ref="selectableTable" bordered hover head-variant="dark" :items="athletes" :fields="fields" :filter="filter" :filterIncludedFields="filterOn" sort-icon-left selectable select-mode="multi" @row-selected="onRowSelected">
+      <b-table responsive ref="selectableTable" bordered hover head-variant="dark" :items="athletes" :fields="fields" :filter="filter" :filterIncludedFields="filterOn" sort-icon-left selectable select-mode="multi" @row-selected="onRowSelected">
         <template v-slot:cell(actions)="row">
           <b-btn variant="info"
                  :to="`/athletes/${row.item.username}`">DETAILS</b-btn>

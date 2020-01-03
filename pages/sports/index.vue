@@ -40,7 +40,7 @@
           </b-form-group>
         </b-col>
       </b-row>
-      <b-table bordered hover head-variant="dark" :items="sports" :fields="fields" :filter="filter" :filterIncludedFields="filterOn" sort-icon-left>
+      <b-table responsive bordered hover head-variant="dark" :items="sports" :fields="fields" :filter="filter" :filterIncludedFields="filterOn" sort-icon-left>
         <template v-slot:cell(actions)="row">
           <b-btn variant="info"
                  :to="`/sports/${row.item.code}`">DETAILS</b-btn>

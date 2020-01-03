@@ -39,7 +39,7 @@
                     </b-form-group>
                 </b-col>
             </b-row>
-            <b-table bordered hover head-variant="dark" :items="products" :fields="fields" :filter="filter" :filterIncludedFields="filterOn" sort-icon-left>
+            <b-table responsive bordered hover head-variant="dark" :items="products" :fields="fields" :filter="filter" :filterIncludedFields="filterOn" sort-icon-left>
                 <template v-slot:cell(actions)="row">
                     <b-btn variant="info" :to="`/products/${row.item.id}`">DETAILS</b-btn>
                     <b-btn variant="warning" :to="`/products/edit/${row.item.id}`">EDIT</b-btn>
