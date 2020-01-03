@@ -37,13 +37,13 @@
           v-model.trim="endTime"
           required />
       </b-form-group>
-      <b-form-group label="Active Sport">
-        <b-select v-model="activeSportCode" :options="activeSports"
+      <b-form-group label="Rank">
+        <b-select v-model="rankCode" :options="ranks"
                   required
                   value-field="code"
                   text-field="name">
           <template v-slot:first>
-            <option :value="0" disabled>-- Please select the Active Sport --
+            <option :value="0" disabled>-- Please select the Rank --
             </option>
           </template>
         </b-select>
@@ -70,15 +70,15 @@
                     {code: '5', name: 'Saturday'},
                     {code: '6', name: 'Sunday'}
                 ],
-                activeSportCode: 0,
-                activeSports: [],
+                rankCode: 0,
+                ranks: [],
                 startTime: '',
                 endTime: '',
                 errorMsg: false
             }
         },
         created() {
-            this.$axios.$get('/api/activeSports').then(activeSports => { this.activeSports = activeSports })
+            this.$axios.$get('/api/ranks').then(ranks => { this.ranks = ranks })
         },
         methods: {
             create() {
@@ -87,7 +87,7 @@
                     dayOfWeekCode: this.dayOfWeekCode,
                     startTime: this.startTime,
                     endTime: this.endTime,
-                    activeSportCode: this.activeSportCode
+                    rankCode: this.rankCode
                 })
                     .then(() => {this.$router.back()
                     })
@@ -98,7 +98,7 @@
             reset(){
                 this.name = null
                 this.dayOfWeekCode = -1
-                this.activeSportCode = 0
+                this.rankCode = 0
                 this.startTime = ''
                 this.endTime = ''
                 this.errorMsg = false

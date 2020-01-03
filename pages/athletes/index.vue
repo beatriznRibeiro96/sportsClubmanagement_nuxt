@@ -101,7 +101,7 @@
                 filterOn: [],
                 selectedAthletes: [],
                 subject: null,
-                message: null,
+                message: null
             }
         },
         created () {
@@ -112,29 +112,28 @@
         },
         methods: {
             send() {
-                this.$axios.$post(`/api/athletes/email/send`, {
+                this.$axios.$post(`/api/users/email/send`, {
                     recepientes: this.selectedAthletes,
                     subject: this.subject,
                     message: this.message
                 })
                     .then(msg => {
-                        this.$toast.success(msg)
+                        this.subject = null
+                        this.message = null
+                        this.$refs.selectableTable.clearSelected()
                     })
                     .catch(error => {
-                        this.$toast.error('error sending the e-mail')
+                        console.log("error sending e-mail")
                     })
             },
             onRowSelected(items) {
                 this.selectedAthletes = items
-                console.log(this.selectedAthletes)
             },
             selectAllRows() {
                 this.$refs.selectableTable.selectAllRows()
-                console.log(this.selectedAthletes)
             },
             clearSelected() {
                 this.$refs.selectableTable.clearSelected()
-                console.log(this.selectedAthletes)
             },
             fetchAthletes() {
                 //const token = localStorage.getItem('auth._token.local')
