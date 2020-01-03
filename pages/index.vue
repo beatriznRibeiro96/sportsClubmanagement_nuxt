@@ -28,5 +28,7 @@
       <b-btn variant="dark"
              :to="`/athletes/${this.$auth.user.sub}`">My Profile</b-btn>
     </div>
+    <b-btn variant="dark" to="/orders">My Orders</b-btn>
+
   </b-container>
 </template>
