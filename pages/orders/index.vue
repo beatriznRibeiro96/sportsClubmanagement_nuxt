@@ -76,7 +76,7 @@
                 </b-card>
             </template>
             </b-table>
-            <b-btn variant="success" to="/products/create">Create a New Order</b-btn>
+            <b-btn variant="success" to="/orders/create">Create a New Order</b-btn>
             <b-btn variant="secondary" to="/">Back</b-btn>
             <b-table id="my-table" :items="order.lineItemOrders" :fields="fieldsOrder" hidden>
                 <template v-slot:custom-foot="data">
