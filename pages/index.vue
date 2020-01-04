@@ -14,6 +14,7 @@
       <b-btn variant="dark" to="/seasons">Seasons</b-btn>
       <b-btn variant="dark" to="/grades">Grades</b-btn>
       <b-btn variant="dark" to="/schedules">Schedules</b-btn>
+      <b-btn variant="dark" to="/trainings">Trainings</b-btn>
       <b-btn variant="dark" to="/products">Products</b-btn>
       <b-btn variant="dark" to="/orders">My Orders</b-btn>
     </div>

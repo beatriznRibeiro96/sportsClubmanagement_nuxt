@@ -1,14 +1,13 @@
 <template>
   <div>
-    <b-container>
+
     <h4>Athletes</h4>
     <b-button v-if="athletes.length>0" size="sm" @click="selectAllRows">Select all</b-button>
     <b-button v-if="athletes.length>0" size="sm" @click="clearSelected">Clear selected</b-button>
     <b-table responsive bordered hover head-variant="dark" ref="selectableTable" v-if="athletes.length" :items="athletes" selectable select-mode="multi" @row-selected="onRowSelected"
              :fields="athleteFields" />
     <p v-else>No athletes.</p>
-    </b-container>
-    <br>
+    
     <b-container v-if="selectedAthletes.length>0">
       <h2>Send an E-mail</h2>
       <b-form @submit.prevent="send">
