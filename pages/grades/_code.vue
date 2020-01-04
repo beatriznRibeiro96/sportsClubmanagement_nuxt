@@ -1,8 +1,8 @@
 <template>
   <b-container>
     <h2>Grade Details</h2>
-    <p>Name: {{ grade.name }}</p>
-    <p>Active Sport: {{grade.activeSportName}}</p>
+    <p><strong>Name:</strong> {{ grade.name }}</p>
+    <p><strong>Active Sport:</strong> {{grade.activeSportName}}</p>
     <b-btn variant="secondary" to="/grades">Back</b-btn>
   </b-container>
 </template>

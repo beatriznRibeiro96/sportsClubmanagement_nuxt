@@ -1,9 +1,9 @@
 <template>
   <b-container>
     <h2>Sport Subscription Details</h2>
-    <p>Name: {{ sportSubscription.name }}</p>
-    <p>Rank: {{sportSubscription.rankName}}</p>
-    <p>Athlete: {{sportSubscription.athleteName}}</p>
+    <p><strong>Name:</strong> {{ sportSubscription.name }}</p>
+    <p><strong>Rank:</strong> {{sportSubscription.rankName}}</p>
+    <p><strong>Athlete:</strong> {{sportSubscription.athleteName}}</p>
     <b-btn variant="secondary" to="/sportSubscriptions">Back</b-btn>
   </b-container>
 </template>

@@ -1,10 +1,10 @@
 <template>
   <b-container>
     <h2>Rank Details</h2>
-    <p>Name: {{ rank.name }}</p>
-    <p>Minimum Age: {{ rank.idadeMin }}</p>
-    <p>Maximum Age: {{ rank.idadeMax }}</p>
-    <p>Active Sport: {{rank.activeSportName}}</p>
+    <p><strong>Name:</strong> {{ rank.name }}</p>
+    <p><strong>Minimum Age:</strong> {{ rank.idadeMin }}</p>
+    <p><strong>Maximum Age:</strong> {{ rank.idadeMax }}</p>
+    <p><strong>Active Sport:</strong> {{rank.activeSportName}}</p>
     <b-btn variant="info"
            :to="`/ranks/${code}/athletes`">Athletes</b-btn>
     <b-btn variant="info"

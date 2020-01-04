@@ -1,9 +1,9 @@
 <template>
   <b-container>
     <h2>Athlete Details</h2>
-    <p>Name: {{ athlete.name }}</p>
-    <p>Email: {{ athlete.email }}</p>
-    <p>Birth Date: {{ athlete.birthDate }}</p>
+    <p><strong>Name:</strong> {{ athlete.name }}</p>
+    <p><strong>Email:</strong> {{ athlete.email }}</p>
+    <p><strong>Birth Date:</strong> {{ athlete.birthDate }}</p>
     <b-btn variant="info"
            :to="`/athletes/${username}/grades`">Grades</b-btn>
     <b-btn variant="info"

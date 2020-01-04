@@ -1,9 +1,9 @@
 <template>
   <b-container>
     <h2>Partner Details</h2>
-    <p>Name: {{ partner.name }}</p>
-    <p>Email: {{ partner.email }}</p>
-    <p>Birth Date: {{ partner.birthDate }}</p>
+    <p><strong>Name:</strong> {{ partner.name }}</p>
+    <p><strong>Email:</strong> {{ partner.email }}</p>
+    <p><strong>Birth Date:</strong> {{ partner.birthDate }}</p>
     <b-btn variant="info"
            :to="`/partners/${username}/messages`">Messages</b-btn>
     <b-btn v-if="this.$auth.user.groups.includes('Partner')" variant="secondary" to="/">Back</b-btn>

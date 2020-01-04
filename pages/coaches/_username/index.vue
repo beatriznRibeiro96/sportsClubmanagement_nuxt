@@ -2,9 +2,9 @@
   <div>
     <b-container>
       <h2>Coach Details</h2>
-      <p>Name: {{ coach.name }}</p>
-      <p>Email: {{ coach.email }}</p>
-      <p>Birth Date: {{ coach.birthDate }}</p>
+      <p><strong>Name:</strong> {{ coach.name }}</p>
+      <p><strong>Email:</strong> {{ coach.email }}</p>
+      <p><strong>Birth Date:</strong> {{ coach.birthDate }}</p>
       <b-btn variant="info"
              :to="`/coaches/${username}/athletes`">Athletes</b-btn>
       <b-btn variant="info"

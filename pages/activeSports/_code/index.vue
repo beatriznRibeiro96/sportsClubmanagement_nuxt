@@ -1,9 +1,9 @@
 <template>
   <b-container>
     <h2>Active Sport Details</h2>
-    <p>Name: {{ activeSport.name }}</p>
-    <p>Sport: {{ activeSport.sportName }}</p>
-    <p>Season: {{ activeSport.seasonName }}</p>
+    <p><strong>Name:</strong> {{ activeSport.name }}</p>
+    <p><strong>Sport:</strong> {{ activeSport.sportName }}</p>
+    <p><strong>Season:</strong> {{ activeSport.seasonName }}</p>
     <b-btn variant="info"
            :to="`/activeSports/${code}/athletes`">Athletes</b-btn>
     <b-btn variant="info"
