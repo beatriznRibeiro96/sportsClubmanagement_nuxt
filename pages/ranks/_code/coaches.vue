@@ -26,7 +26,7 @@
         created() {
             this.$axios.$get(`/api/ranks/${this.code}`)
                 .then(rank => this.rank = rank || {})
-                .then(() => this.$axios.$get(`/api/ranks/${this.username}/coaches`))
+                .then(() => this.$axios.$get(`/api/ranks/${this.code}/coaches`))
                 .then(coaches => this.coaches = coaches)
         },
 

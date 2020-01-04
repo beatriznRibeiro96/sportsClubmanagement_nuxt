@@ -13,6 +13,8 @@
              :to="`/coaches/${username}/ranks`">Ranks</b-btn>
       <b-btn variant="info"
              :to="`/coaches/${username}/activeSports`">Active Sports</b-btn>
+      <b-btn variant="info"
+             :to="`/coaches/${username}/trainings`">Trainings</b-btn>
       <b-btn v-if="this.$auth.user.groups.includes('Coach')" variant="secondary" to="/">Back</b-btn>
       <b-btn v-else variant="secondary" to="/coaches">Back</b-btn>
     </b-container>
