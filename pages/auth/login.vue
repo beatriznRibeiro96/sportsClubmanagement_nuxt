@@ -44,10 +44,12 @@
                     // check if the user $auth.user object is set
                     // TODO redirect based on the user role
                     // eg:
-                    if (this.$auth.user.groups.includes('Teacher')) {
-                        this.$router.push(`/teachers/${this.$auth.user.sub}`)
-                    } else if (this.$auth.user.groups.includes('Student')) {
-                        this.$router.push(`/students/${this.$auth.user.sub}`)
+                    if (this.$auth.user.groups.includes('Coach')) {
+                        this.$router.push("/")
+                    } else if (this.$auth.user.groups.includes('Partner')) {
+                        this.$router.push("/")
+                    } else if (this.$auth.user.groups.includes('Athlete')) {
+                            this.$router.push("/")
                     } else if (this.$auth.user.groups.includes('Administrator')) {
                         this.$router.push("/")
                     }
