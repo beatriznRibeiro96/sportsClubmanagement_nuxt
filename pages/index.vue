@@ -15,20 +15,22 @@
       <b-btn variant="dark" to="/grades">Grades</b-btn>
       <b-btn variant="dark" to="/schedules">Schedules</b-btn>
       <b-btn variant="dark" to="/products">Products</b-btn>
+      <b-btn variant="dark" to="/orders">My Orders</b-btn>
     </div>
     <div v-if="this.$auth.user.groups.includes('Coach')">
       <b-btn variant="dark"
              :to="`/coaches/${this.$auth.user.sub}`">My Profile</b-btn>
+      <b-btn variant="dark" to="/orders">My Orders</b-btn>
     </div>
     <div v-if="this.$auth.user.groups.includes('Partner')">
       <b-btn variant="dark"
              :to="`/partners/${this.$auth.user.sub}`">My Profile</b-btn>
+      <b-btn variant="dark" to="/orders">My Orders</b-btn>
     </div>
     <div v-if="this.$auth.user.groups.includes('Athlete')">
       <b-btn variant="dark"
              :to="`/athletes/${this.$auth.user.sub}`">My Profile</b-btn>
+      <b-btn variant="dark" to="/orders">My Orders</b-btn>
     </div>
-    <b-btn variant="dark" to="/orders">My Orders</b-btn>
-
   </b-container>
 </template>

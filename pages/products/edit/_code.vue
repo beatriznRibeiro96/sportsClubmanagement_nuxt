@@ -32,7 +32,7 @@
                                 name="categoryDescription"
                                 v-model="product.categoryID"
                                 :options="categories"
-                                value-field="id" 
+                                value-field="id"
                                 text-field="description" />
                             <template v-slot:first>
                                 <option :value="null" disabled>-- Please select an option --</option>
@@ -48,7 +48,7 @@
 
                 <b-btn variant="secondary" to="/products">RETURN</b-btn>
                 <b-button type="submit" variant="primary">EDIT</b-button>
-                <b-btn variant="warning" @click.prevent="edit">RESET</b-btn>
+                <b-btn variant="warning" @click.prevent="reset">RESET</b-btn>
             </b-form>
             <b-alert class="mt-3" :variant="message.variant" dismissible :show="message.show">
                 {{message.text}}
@@ -100,7 +100,7 @@
 
                 this.$axios.$put(`/api/products/${id}`, this.product)
                     .then((product) => {
-                        this.$router.push(`/products/edit/${product.id}`)
+                        this.$router.push(`/products/${product.id}`)
 
                         this.message.variant = 'success';
                         this.message.text = 'Product edited with success';
@@ -110,7 +110,7 @@
                         this.error = error;
                         console.log(error);
                     })
-                
+
             },
             reset() {
                 this.getProduct();
@@ -166,7 +166,7 @@
                 }
             },
             deleteCategoty() {
-                if (confirm('Deleting this category it will invalidated all products inside.')) {
+                if (confirm('Deleting this category will invalidate all of this category products.')) {
                     this.$axios.$delete(`/api/categories/${this.product.categoryID}`)
                         .then((category) => {
                             this.$router.go(-1);

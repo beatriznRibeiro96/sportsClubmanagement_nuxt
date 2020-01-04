@@ -1,14 +1,11 @@
 <template>
   <b-container>
     <h2>Partner Details</h2>
-    <p>Username: {{ partner.username }}</p>
-    <p>Name: {{ partner.name }}</p>
-    <p>Email: {{ partner.email }}</p>
-    <p>Birth Date: {{ partner.birthDate }}</p>
-    <h4>Messages</h4>
-    <b-table responsive v-if="messages.length" striped over :items="messages"
-             :fields="messageFields" />
-    <p v-else>No messages.</p>
+    <p><strong>Name:</strong> {{ partner.name }}</p>
+    <p><strong>Email:</strong> {{ partner.email }}</p>
+    <p><strong>Birth Date:</strong> {{ partner.birthDate }}</p>
+    <b-btn variant="info"
+           :to="`/partners/${username}/messages`">Messages</b-btn>
     <b-btn v-if="this.$auth.user.groups.includes('Partner')" variant="secondary" to="/">Back</b-btn>
     <b-btn v-else variant="secondary" to="/partners">Back</b-btn>
   </b-container>
@@ -18,8 +15,6 @@
         data() {
             return {
                 partner: {},
-                messages: [],
-                messageFields: ['subject', 'body']
             }
         },
         computed: {
@@ -30,8 +25,6 @@
         created() {
             this.$axios.$get(`/api/partners/${this.username}`)
                 .then(partner => this.partner = partner || {})
-                .then(() => this.$axios.$get(`/api/partners/${this.username}/messages`))
-                .then(messages => this.messages = messages)
         },
     }
 </script>

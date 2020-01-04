@@ -1,8 +1,7 @@
 <template>
   <b-container>
     <h2>Sport Details</h2>
-    <p>Code: {{ sport.code }}</p>
-    <p>Name: {{ sport.name }}</p>
+    <p><strong>Name:</strong> {{ sport.name }}</p>
     <b-btn variant="secondary" to="/sports">Back</b-btn>
   </b-container>
 </template>
