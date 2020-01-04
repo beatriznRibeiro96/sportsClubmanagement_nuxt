@@ -1,7 +1,7 @@
 <template>
   <div>
     <h4>Grades</h4>
-    <b-table responsive v-if="grades.length" striped over :items="grades"
+    <b-table responsive bordered hover head-variant="dark" v-if="grades.length" :items="grades"
              :fields="gradeFields" />
     <p v-else>No grades.</p>
     <b-btn variant="secondary" :to="`/athletes/${username}`">Back</b-btn>
@@ -13,7 +13,7 @@
         data() {
             return {
                 athlete: {},
-                gradeFields: ['code', 'name' ]
+                gradeFields: ['name', 'activeSportName']
             }
 
         },

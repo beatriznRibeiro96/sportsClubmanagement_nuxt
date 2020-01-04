@@ -1,7 +1,7 @@
 <template>
   <div>
   <h4>Active Sports</h4>
-  <b-table responsive v-if="activeSports.length" striped over :items="activeSports"
+  <b-table responsive bordered hover head-variant="dark" v-if="activeSports.length" :items="activeSports"
            :fields="activeSportFields" />
   <p v-else>No active sports.</p>
   <b-btn variant="secondary" :to="`/athletes/${username}`">Back</b-btn>
@@ -13,7 +13,7 @@
         data() {
             return {
                 athlete: {},
-                activeSportFields: ['code', 'name' ],
+                activeSportFields: ['name', 'sportName', 'seasonName' ],
                 activeSports: []
             }
 

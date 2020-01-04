@@ -1,7 +1,6 @@
 <template>
   <b-container>
     <h2>Athlete Details</h2>
-    <p>Username: {{ athlete.username }}</p>
     <p>Name: {{ athlete.name }}</p>
     <p>Email: {{ athlete.email }}</p>
     <p>Birth Date: {{ athlete.birthDate }}</p>

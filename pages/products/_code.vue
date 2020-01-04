@@ -2,7 +2,6 @@
   <b-container>
     <h2>Product Details</h2>
     <div v-if="error == null">
-        <p><strong>Code:</strong> {{ product.id }}</p>
         <p><strong>Name:</strong> {{ product.description }}</p>
         <p><strong>Category:</strong> {{ product.categoryDescription }}</p>
         <p><strong>Price:</strong> {{ product.price }} €</p>

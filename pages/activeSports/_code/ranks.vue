@@ -1,7 +1,7 @@
 <template>
   <div>
     <h4>Ranks</h4>
-    <b-table responsive v-if="ranks.length" striped over :items="ranks"
+    <b-table responsive bordered hover head-variant="dark" v-if="ranks.length" :items="ranks"
              :fields="rankFields" />
     <p v-else>No ranks.</p>
     <b-btn variant="secondary" :to="`/activeSports/${code}`">Back</b-btn>
@@ -14,7 +14,7 @@
             return {
                 activeSport: {},
                 ranks: [],
-                rankFields: ['code', 'name'],
+                rankFields: ['name', 'idadeMin', 'idadeMax', 'activeSportName'],
             }
 
         },

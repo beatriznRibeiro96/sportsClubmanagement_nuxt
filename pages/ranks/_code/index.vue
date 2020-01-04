@@ -1,16 +1,10 @@
 <template>
   <b-container>
     <h2>Rank Details</h2>
-    <p>Code: {{ rank.code }}</p>
     <p>Name: {{ rank.name }}</p>
     <p>Minimum Age: {{ rank.idadeMin }}</p>
     <p>Maximum Age: {{ rank.idadeMax }}</p>
-    <h4>Active Sport</h4>
-    <div v-if="activeSport">
-      <p>Code: {{activeSport.code}}</p>
-      <p>Name: {{activeSport.name}}</p>
-    </div>
-    <p v-else>No active sport.</p>
+    <p>Active Sport: {{rank.activeSportName}}</p>
     <b-btn variant="info"
            :to="`/ranks/${code}/athletes`">Athletes</b-btn>
     <b-btn variant="info"
@@ -22,8 +16,7 @@
     export default {
         data() {
             return {
-                rank: {},
-                activeSport: {},
+                rank: {}
             }
         },
         computed: {
@@ -34,8 +27,6 @@
         created() {
             this.$axios.$get(`/api/ranks/${this.code}`)
                 .then(rank => this.rank = rank || {})
-                .then(() => this.$axios.$get(`/api/activeSports/${this.rank.activeSportCode}`))
-                .then(activeSport => this.activeSport = activeSport)
         },
     }
 </script>

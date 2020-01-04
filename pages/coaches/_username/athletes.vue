@@ -4,7 +4,7 @@
     <h4>Athletes</h4>
     <b-button v-if="athletes.length>0" size="sm" @click="selectAllRows">Select all</b-button>
     <b-button v-if="athletes.length>0" size="sm" @click="clearSelected">Clear selected</b-button>
-    <b-table responsive ref="selectableTable" v-if="athletes.length" striped over :items="athletes" selectable select-mode="multi" @row-selected="onRowSelected"
+    <b-table responsive bordered hover head-variant="dark" ref="selectableTable" v-if="athletes.length" :items="athletes" selectable select-mode="multi" @row-selected="onRowSelected"
              :fields="athleteFields" />
     <p v-else>No athletes.</p>
     </b-container>
@@ -42,7 +42,7 @@
             return {
                 coach: {},
                 athletes: [],
-                athleteFields: ['username', 'name'],
+                athleteFields: ['name', 'email', 'birthDate'],
                 selectedAthletes: [],
                 subject: null,
                 message: null

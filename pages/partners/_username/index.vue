@@ -1,7 +1,6 @@
 <template>
   <b-container>
     <h2>Partner Details</h2>
-    <p>Username: {{ partner.username }}</p>
     <p>Name: {{ partner.name }}</p>
     <p>Email: {{ partner.email }}</p>
     <p>Birth Date: {{ partner.birthDate }}</p>

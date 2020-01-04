@@ -1,7 +1,7 @@
 <template>
   <div>
     <h4>Coaches</h4>
-    <b-table responsive v-if="coaches.length" striped over :items="coaches"
+    <b-table responsive bordered hover head-variant="dark" v-if="coaches.length" :items="coaches"
              :fields="coachFields" />
     <p v-else>No coaches.</p>
     <b-btn variant="secondary" :to="`/athletes/${username}`">Back</b-btn>
@@ -14,7 +14,7 @@
             return {
                 athlete: {},
                 coaches: [],
-                coachFields: ['username', 'name'],
+                coachFields: ['name', 'email', 'birthDate'],
             }
 
         },

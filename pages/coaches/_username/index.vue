@@ -2,7 +2,6 @@
   <div>
     <b-container>
       <h2>Coach Details</h2>
-      <p>Username: {{ coach.username }}</p>
       <p>Name: {{ coach.name }}</p>
       <p>Email: {{ coach.email }}</p>
       <p>Birth Date: {{ coach.birthDate }}</p>
@@ -26,9 +25,6 @@
         data() {
             return {
                 coach: {},
-
-
-
             }
         },
         computed: {
